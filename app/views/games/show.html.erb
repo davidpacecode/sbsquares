@@ -1,4 +1,9 @@
-<h1><%= "#{@game.team_1} vs. #{@game.team_2} - #{@game.game_date}" %></h1>
+<% cache @game do %>
+  <h1><%= "#{@game.team_1} vs. #{@game.team_2} - #{@game.game_date}" %></h1>
+<% end %>
 
 <%= link_to "Back", games_path %>
-
+<% if authenticated? %>
+  <%= link_to "Edit", edit_game_path(@game) %>
+  <%= button_to "Delete", @game, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+<% end %>

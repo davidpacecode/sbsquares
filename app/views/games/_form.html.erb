@@ -1,0 +1,16 @@
+<%= form_with model: @game do |form| %>
+  <div>
+    <%= form.label :team_1 %>
+    <%= form.text_field :team_1 %>
+    <%= tag.br %>
+    <%= form.label :team_2 %>
+    <%= form.text_field :team_2 %>
+    <%= tag.br %>
+    <%= form.label :game_date %>
+    <%= form.text_field :game_date %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
