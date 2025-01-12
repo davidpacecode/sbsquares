@@ -1,0 +1,13 @@
+<h1>Games</h1>
+
+<%= link_to "New game", new_game_path %>
+<%= tag.br %>
+<%= tag.br %>
+
+<div id="games">
+  <% @games.each do |game| %>
+    <div>
+      <%= link_to "#{game.team_1} vs. #{game.team_2} - #{game.game_date}", game %>
+    </div>
+  <% end %>
+</div>
