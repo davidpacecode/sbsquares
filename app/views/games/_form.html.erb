@@ -10,6 +10,23 @@
     <%= form.text_field :game_date %>
   </div>
 
+  <%= fields_for :quarter_Scores do |quarter| %>
+    <%= tag.br %>
+    <% 4.times do |i| %>
+      <%= form.label :quarter %>
+      <%= form.label i+1 %>
+      <%= tag.br %>
+      <%= form.label :team_1_score %>
+      <%= form.text_field :team_1_score %>
+      <%= tag.br %>
+      <%= form.label :team_2_score %>
+      <%= form.text_field :team_2_score %>
+      <%= tag.br %>
+      <%= tag.br %>
+    <% end %>
+    <%= tag.br %>
+  <% end %>
+
   <div>
     <%= form.submit %>
   </div>
