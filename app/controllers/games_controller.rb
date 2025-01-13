@@ -40,10 +40,16 @@ class GamesController < ApplicationController
 
   private
     def set_game
-      @game = Game.find(params[:id])
+      @game = Game.includes(:quarter_scores).find(params[:id])
     end
 
     def game_params
-      params.expect(game: [ :team_1, :team_2, :game_date ])
+      #      params.expect(game: [ :team_1, :team_2, :game_date ], quarter_scores_attributes: [ :team_1_score, :team_2_score, :quarter ])
+      params.require(:game).permit(
+        :team_1,
+        :team_2,
+        :game_date,
+        quarter_scores_attributes: [ :id, :team_1_score, :team_2_score, :quarter ]
+      )
     end
 end
