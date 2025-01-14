@@ -11,18 +11,20 @@
     <th>Q4</th>
   </tr>
   <tr>
-    <td>@game.team_1</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td> <%="#{@game.team_1}"%> </td>
+    <% @game.quarter_scores.each do |qs| %>
+      <td>
+        <%="#{qs.team_1_score.to_s}"%>
+      </td>
+    <% end %>
   </tr>
   <tr>
-    <td>"#{@game.team_2}"</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td> <%="#{@game.team_2}"%> </td>
+    <% @game.quarter_scores.each do |qs| %>
+      <td>
+        <%="#{qs.team_2_score.to_s}"%>
+      </td>
+    <% end %>
   </tr>
 <% end %>
 
