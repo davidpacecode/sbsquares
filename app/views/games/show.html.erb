@@ -2,6 +2,30 @@
   <h1><%= "#{@game.team_1} vs. #{@game.team_2} - #{@game.game_date}" %></h1>
 <% end %>
 
+<%= content_tag :table do %>
+  <tr>
+    <th>Team</th>
+    <th>Q1</th>
+    <th>Q2</th>
+    <th>Q3</th>
+    <th>Q4</th>
+  </tr>
+  <tr>
+    <td>@game.team_1</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>"#{@game.team_2}"</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+<% end %>
+
 <%= link_to "Back", games_path %>
 <% if authenticated? %>
   <%= link_to "Edit", edit_game_path(@game) %>
