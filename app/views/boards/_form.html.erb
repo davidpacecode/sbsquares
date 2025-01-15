@@ -1,0 +1,13 @@
+<%= form_with(model: [@game, @board], url: game_boards_path(@game)) do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+    <%= tag.br %>
+    <%= form.label :price %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

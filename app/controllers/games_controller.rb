@@ -38,6 +38,38 @@ class GamesController < ApplicationController
     redirect_to games_path
   end
 
+  def show
+  end
+
+  def new
+    @game = Game.new
+  end
+
+  def create
+    @game = Game.new(game_params)
+    if @game.save
+      redirect_to @game
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @game.update(game_params)
+      redirect_to @game
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @game.destroy
+    redirect_to games_path
+  end
+
   private
     def set_game
       @game = Game.includes(:quarter_scores).find(params[:id])

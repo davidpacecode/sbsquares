@@ -2,6 +2,8 @@
   <h1><%= "#{@game.team_1} vs. #{@game.team_2} - #{@game.game_date}" %></h1>
 <% end %>
 
+<%= link_to "New Board", new_game_board_path(@game) if authenticated? %>
+
 <%= content_tag :table do %>
   <tr>
     <th>Team</th>
