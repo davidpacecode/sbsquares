@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_15_012045) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_16_044113) do
   create_table "boards", force: :cascade do |t|
     t.integer "game_id", null: false
     t.string "name"
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "row_numbers"
+    t.text "column_numbers"
     t.index ["game_id"], name: "index_boards_on_game_id"
   end
 

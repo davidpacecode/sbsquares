@@ -4,6 +4,9 @@
 
 <%= link_to "New Board", new_game_board_path(@game) if authenticated? %>
 
+<%= tag.br %>
+<%= tag.br %>
+
 <%= content_tag :table do %>
   <tr>
     <th>Team</th>
@@ -29,6 +32,16 @@
     <% end %>
   </tr>
 <% end %>
+
+<%= tag.br %>
+<%= tag.br %>
+<b> Current Boards for this Game </b>
+<%= tag.br %>
+<% @game.boards.each do |board| %>
+  <%= "#{board.name} with a price of #{board.price.to_s}" %>
+<%= tag.br %>
+<% end %>
+<%= tag.br %>
 
 <%= link_to "Back", games_path %>
 <% if authenticated? %>
