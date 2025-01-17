@@ -26,11 +26,13 @@ class BoardsController < ApplicationController
   end
 
   def edit
+    @game = Game.find(params[:game_id])
+    @board = @game.boards.find(params[:id])
   end
 
   def update
-    if @board.update(game_params)
-      redirect_to @board
+    if @board.update(board_params)
+      redirect_to @game.board
     else
       render :edit, status: :unprocessable_entity
     end

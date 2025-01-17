@@ -1,4 +1,4 @@
-<%= form_with(model: [@game, @board], url: game_boards_path(@game)) do |form| %>
+<%= form_with(model: [@game, @board]) do |form| %>
   <div>
     <%= form.label :name %>
     <%= form.text_field :name %>

@@ -38,7 +38,7 @@
 <b> Current Boards for this Game </b>
 <%= tag.br %>
 <% @game.boards.each do |board| %>
-  <%= "#{board.name} with a price of #{board.price.to_s}" %>
+  <%= link_to "#{board.name} with a price of #{board.price.to_s}", edit_game_board_path(@game, board) %>
 <%= tag.br %>
 <% end %>
 <%= tag.br %>

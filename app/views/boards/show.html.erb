@@ -1,0 +1,10 @@
+
+<%= link_to "New Board", new_game_board_path(@game) if authenticated? %>
+
+<%= tag.br %>
+<%= tag.br %>
+<%= link_to "Back", games_path %>
+<% if authenticated? %>
+  <%= link_to "Edit", edit_game_path(@game) %>
+  <%= button_to "Delete", @game, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+<% end %>
