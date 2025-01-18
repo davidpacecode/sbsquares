@@ -7,6 +7,10 @@
     <%= form.text_field :price %>
   </div>
 
+  <% @board.squares.each do |s| %>
+    <%="#{s.row.to_s} #{s.column.to_s}"%>
+  <% end %>
+
   <div>
     <%= form.submit %>
   </div>

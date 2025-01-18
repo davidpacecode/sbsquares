@@ -45,7 +45,7 @@ class BoardsController < ApplicationController
 
   private
     def set_board
-      @board = Board.find(params[:id]) # will eventually want .includes(:squares) when I implement them
+    @board = Board.includes(:squares).find(params[:id])
     end
 
     def board_params

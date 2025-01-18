@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   # root "posts#index"
   resources :games do
     resources :boards
+      resources :squares
   end
   root "games#index"
 end
