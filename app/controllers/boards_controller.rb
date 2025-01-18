@@ -32,7 +32,7 @@ class BoardsController < ApplicationController
 
   def update
     if @board.update(board_params)
-      redirect_to @game.board
+      redirect_to games_path
     else
       render :edit, status: :unprocessable_entity
     end
