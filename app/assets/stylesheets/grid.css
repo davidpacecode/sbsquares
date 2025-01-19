@@ -1,0 +1,19 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(10, 40px);
+  grid-template-rows: repeat(10, 40px);
+  gap: 2px;
+  background-color: #f0f0f0;
+  padding: 10px;
+  width: fit-content;
+}
+
+.grid-item {
+  background-color: #3498db;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+}

@@ -7,9 +7,13 @@
     <%= form.text_field :price %>
   </div>
 
+  <div class="wa-grid grid-container">
   <% @board.squares.each do |s| %>
-    <%="#{s.row.to_s} #{s.column.to_s}"%>
+    <div class="grid-item">
+      <%="#{s.row.to_s} #{s.column.to_s}"%>
+    </div>
   <% end %>
+  </div>
 
   <div>
     <%= form.submit %>
