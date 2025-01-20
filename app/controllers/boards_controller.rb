@@ -31,10 +31,11 @@ class BoardsController < ApplicationController
   end
 
   def update
-    @board.update_selected_squares(params[:selected_squares], params[:nickname])
+    @game = Game.find(params[:game_id])
+    @board.update_selected_squares(params[:selected_squares], params[:board][:nickname])
 
     if @board.update(board_params)
-      redirect_to games_path
+      redirect_to game_path(@game)
     else
       render :edit, status: :unprocessable_entity
     end
@@ -47,6 +48,7 @@ class BoardsController < ApplicationController
 
   private
     def set_board
+      @game = Game.find(params[:game_id])
       @board = Board.includes(:squares).find(params[:id])
     end
 
@@ -54,7 +56,7 @@ class BoardsController < ApplicationController
       params.require(:board).permit(
         :name,
         :price,
-        squares_attributes: [ :other_fields, selected_squares: [], nickname: nil ]
+        squares_attributes: [ :nickname ]
       )
     end
 end

@@ -15,10 +15,8 @@
   <div class="wa-grid grid-container">
   <% @board.squares.each do |s| %>
     <div class="grid-item">
-      <% if s.user_id.nil? %>
-        <wa-checkbox></wa-checkbox>
-      <% elsif s.nickname.nil? %>
-        <%= "#{s.user_id}" %>
+      <% if s.nickname.nil? %>
+        <%= check_box_tag 'selected_squares[]', s.id %>
       <% else %>
         <%= "#{s.nickname}" %>
       <% end %>

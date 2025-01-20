@@ -7,6 +7,8 @@ class Board < ApplicationRecord
   after_create :create_squares
 
   def update_selected_squares(square_ids, nickname)
+    Rails.logger.info "Square IDs: #{square_ids.inspect}"
+    Rails.logger.info "Nickname: #{nickname.inspect}"
     return unless square_ids.present? && nickname.present?
     squares.where(id: square_ids).update_all(nickname: nickname)
   end
