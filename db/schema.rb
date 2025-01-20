@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_18_031534) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_19_214813) do
   create_table "boards", force: :cascade do |t|
     t.integer "game_id", null: false
     t.string "name"
@@ -56,6 +56,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_18_031534) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "nickname"
     t.index ["board_id"], name: "index_squares_on_board_id"
     t.index ["user_id"], name: "index_squares_on_user_id"
   end

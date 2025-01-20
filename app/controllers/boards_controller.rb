@@ -31,6 +31,8 @@ class BoardsController < ApplicationController
   end
 
   def update
+    @board.update_selected_squares(params[:selected_squares], params[:nickname])
+
     if @board.update(board_params)
       redirect_to games_path
     else
@@ -45,14 +47,14 @@ class BoardsController < ApplicationController
 
   private
     def set_board
-    @board = Board.includes(:squares).find(params[:id])
+      @board = Board.includes(:squares).find(params[:id])
     end
 
     def board_params
       params.require(:board).permit(
         :name,
-        :price
-        # quarter_scores_attributes: [ :id, :team_1_score, :team_2_score, :quarter ]
+        :price,
+        squares_attributes: [ :other_fields, selected_squares: [], nickname: nil ]
       )
     end
 end

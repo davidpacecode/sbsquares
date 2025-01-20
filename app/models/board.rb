@@ -6,6 +6,11 @@ class Board < ApplicationRecord
 
   after_create :create_squares
 
+  def update_selected_squares(square_ids, nickname)
+    return unless square_ids.present? && nickname.present?
+    squares.where(id: square_ids).update_all(nickname: nickname)
+  end
+
   private
 
   def create_squares

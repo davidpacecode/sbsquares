@@ -7,10 +7,21 @@
     <%= form.text_field :price %>
   </div>
 
+  <%= tag.br %>
+  <%= form.label :nickname %>
+  <%= form.text_field :nickname %>
+  <%= tag.br %>
+
   <div class="wa-grid grid-container">
   <% @board.squares.each do |s| %>
     <div class="grid-item">
-      <%="#{s.row.to_s} #{s.column.to_s}"%>
+      <% if s.user_id.nil? %>
+        <wa-checkbox></wa-checkbox>
+      <% elsif s.nickname.nil? %>
+        <%= "#{s.user_id}" %>
+      <% else %>
+        <%= "#{s.nickname}" %>
+      <% end %>
     </div>
   <% end %>
   </div>
