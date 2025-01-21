@@ -26,14 +26,31 @@
   </head>
 
   <body>
-    <nav>
-      <%= link_to "Home", root_path %>
-      <%= link_to "Login", new_session_path unless authenticated? %>
-      <%= button_to "Log out", session_path, method: :delete if authenticated? %>
-    </nav>
+    <wa-page>
+      <header slot="header">
+        <div>
+          <wa-icon name="football" style="color: #A52A2A"></wa-icon>
+          <wa-icon name="square" style="color: #0000ff"></wa-icon>
+          <b>Super Bowl Squares</b>
+        </div>
+      </header>
 
-    <main>
-      <%= yield %>
-    </main>
+      <nav slot="navigation">
+          <%= link_to "Home", root_path %>
+          <%= link_to "Login", new_session_path unless authenticated? %>
+          <%= button_to "Log out", session_path, method: :delete if authenticated? %>
+      </nav>
+
+      <main>
+        <%= yield %>
+      </main>
+
+      <footer slot="footer">
+        <div>
+          Made with <wa-icon name="heart" style="color: #ff5733;"></wa-icon> by the <a href="https://www.likableguys.com">Likable Guys</a>
+        </div>
+      </footer>
+
+    </wa-page>
   </body>
 </html>
