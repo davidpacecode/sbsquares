@@ -1,6 +1,7 @@
 class Board < ApplicationRecord
   belongs_to :game
   has_many :squares, dependent: :destroy
+  has_and_belongs_to_many :users
   validates :game_id, :name, :price, presence: true
   accepts_nested_attributes_for :squares
 
