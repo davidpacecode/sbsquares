@@ -46,6 +46,20 @@ class BoardsController < ApplicationController
     redirect_to boards_path
   end
 
+  def add_user
+    @board = Board.find(params[:id])
+    @user = User.find(params[:user_id])
+    @board.users << @user unless @board.users.include?(@user)
+    redirect_to @board, notice: "User was successfully added to board."
+  end
+
+  def remove_user
+    @board = Board.find(params[:id])
+    @user = User.find(params[:user_id])
+    @board.users.delete(@user)
+    redirect_to @board, notice: "User was successfully removed from board."
+  end
+
   private
     def set_board
       @game = Game.find(params[:game_id])

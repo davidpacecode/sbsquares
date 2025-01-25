@@ -17,5 +17,13 @@ Rails.application.routes.draw do
     resources :boards
       resources :squares
   end
+
+  resources :boards do
+    member do
+      post "add_user"
+      delete "remove_user"
+    end
+  end
+
   root "games#index"
 end
