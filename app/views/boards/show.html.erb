@@ -1,10 +1,33 @@
+<%= form_with(model: [@game, @board]) do |form| %>
 
-<%= link_to "New Board", new_game_board_path(@game) if authenticated? %>
+  <%= link_to "New Board", new_game_board_path(@game) if authenticated? %>
 
-<%= tag.br %>
-<%= tag.br %>
-<%= link_to "Back", games_path %>
-<% if authenticated? %>
-  <%= link_to "Edit", edit_game_path(@game) %>
-  <%= button_to "Delete", @game, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+    <%= tag.br %>
+    <%= form.label :nickname %>
+    <%= form.text_field :nickname %>
+    <%= tag.br %>
+
+    <div class="wa-grid grid-container">
+      <% @board.squares.each do |s| %>
+        <div class="grid-item">
+          <% if s.nickname.nil? %>
+            <%= check_box_tag 'selected_squares[]', s.id %>
+          <% else %>
+            <%= "#{s.nickname}" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+  <%= tag.br %>
+  <%= tag.br %>
+  <%= link_to "Back", games_path %>
+  <% if authenticated? %>
+    <%= link_to "Edit", edit_game_path(@game) %>
+    <%= button_to "Delete", @game, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
 <% end %>

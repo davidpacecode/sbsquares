@@ -8,21 +8,36 @@
   </div>
 
   <%= tag.br %>
-  <%= form.label :nickname %>
-  <%= form.text_field :nickname %>
-  <%= tag.br %>
 
-  <div class="wa-grid grid-container">
-  <% @board.squares.each do |s| %>
-    <div class="grid-item">
-      <% if s.nickname.nil? %>
-        <%= check_box_tag 'selected_squares[]', s.id %>
-      <% else %>
-        <%= "#{s.nickname}" %>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Price of Square</th>
+        <th>Members</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @game.boards.each do |board| %>
+        <tr>
+          <td><%= board.name %></td>
+          <td><%= board.price %></td>
+          <td><%= board.users.count %> members</td>
+          <td>
+            <%= link_to 'Show', board %>
+            <%= link_to 'Edit', edit_board_path(board) %>
+            <%= link_to 'Delete', board, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+        </tr>
       <% end %>
-    </div>
-  <% end %>
-  </div>
+    </tbody>
+  </table>
+
+  <%= tag.br %> 
+
+  <%= link_to 'New Board', new_board_path, class: 'btn btn-primary' %>
 
   <div>
     <%= form.submit %>
