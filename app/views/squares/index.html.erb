@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Squares" %>
+
+<h1>Squares</h1>
+
+<div id="squares">
+  <% @squares.each do |square| %>
+    <%= render square %>
+    <p>
+      <%= link_to "Show this square", square %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New square", new_square_path %>
