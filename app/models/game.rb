@@ -3,4 +3,5 @@ class Game < ApplicationRecord
   has_one_attached :team_2_logo
   has_many :scores
   has_many :squares
+  has_many :users, through: :squares
 end
