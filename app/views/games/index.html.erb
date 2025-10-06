@@ -6,11 +6,33 @@
 
 <div id="games">
   <% @games.each do |game| %>
-    <%= render game %>
-    <p>
-      <%= link_to "Show this game", game %>
-    </p>
+    <div class="wa-stack" style="max-width: 80ch; margin: auto">
+      <article class="wa-flank:end wa-align-items-baseline" style="--flank-size: 10ch">
+        <div class="wa-grid">
+          <div class="wa-cluster">
+            <%= image_tag game.team_1_logo, alt: game.team_1, width: 50 %>
+            <span><%= game.team_1 %></span>
+            <span>vs.</span>
+            <%= image_tag game.team_2_logo, alt: game.team_2, width: 50 %>
+            <span><%= game.team_2 %></span>
+            <%= game.game_date.strftime("%A, %B %-d, %Y at %-I:%M %p") %>
+            <%= link_to game do %>
+              <% if game.game_date > Time.current %>
+                <span class="upcoming">Upcoming</span>
+              <% elsif game.game_date < 1.day.ago %>
+                <wa-tag variant="brand" appearance="accent">Completed</wa-tag>
+              <% else %>
+                <span class="live">Live Now!</span>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </article>
+      <wa-divider></wa-divider>
+    </div>
   <% end %>
 </div>
 
-<%= link_to "New game", new_game_path %>
+      <%# link_to "Show this game", game %>
+
+<%= link_to "New game", new_game_path if authenticated? %>

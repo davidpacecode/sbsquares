@@ -28,6 +28,25 @@
   </head>
 
   <body>
-    <%= yield %>
+
+    <wa-page class="wa-system">
+      <header slot="header">
+        <%= link_to root_path do %>
+          <div class="wa-cluster">
+            <i class="fa-duotone fa-solid fa-football fa-2xl" style="--fa-primary-color: #25511f; --fa-secondary-color: #1e201e;"></i>
+            <span class="wa-heading-l">Super Bowl Squares</span>
+          </div>
+        <% end %>
+        <div class="wa-cluster">
+          <%= link_to "Log in", new_session_path unless authenticated? %>
+          <%= button_to "Log out", session_path, method: :delete if authenticated? %>
+        </div>
+      </header>
+
+      <main>
+        <%= yield %>
+      </main>
+    </wa-page>
+
   </body>
 </html>

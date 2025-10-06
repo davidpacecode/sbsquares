@@ -1,9 +1,13 @@
 class GamesController < ApplicationController
   before_action :set_game, only: %i[ show edit update destroy ]
 
+  allow_unauthenticated_access only: %i[ index ]
+
   # GET /games or /games.json
   def index
-    @games = Game.all
+    upcoming = Game.where("game_date >= ?", Time.current).order(:game_date)
+    past = Game.where("game_date < ?", Time.current).order(game_date: :desc)
+    @games = upcoming + past
   end
 
   # GET /games/1 or /games/1.json
