@@ -1,6 +1,14 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @game %>
+<div class="wa-stack">
+  <% (0..9).each do |row| %>
+    <div class="wa-cluster">
+      <% (0..9).each do |column| %>
+        <wa-checkbox></wa-checkbox>
+      <% end %>
+    </div>
+  <% end %>
+</div>
 
 <div>
   <%= link_to "Edit this game", edit_game_path(@game) %> |
