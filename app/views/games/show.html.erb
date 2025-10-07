@@ -3,11 +3,40 @@
 
 <div class="wa-stack" style="max-width: 900px; margin: 0 auto;">
   <div class="wa-cluster wa-align-items-center">
-    <%= image_tag @game.team_1_logo, alt: @game.team_1_name, width: 50 if @game.team_1_logo.attached? %>
-    <h1><%= "#{@game.team_1} vs. #{@game.team_2} %></h1>
-    <%= image_tag @game.team_2_logo, alt: @game.team_2_name, width: 50 if @game.team_2_logo.attached? %>
+    <%= image_tag @game.team_1_logo, alt: @game.team_1, width: 50 if @game.team_1_logo.attached? %>
+    <h1><%= "#{@game.team_1} vs. #{@game.team_2}" %></h1>
+    <%= image_tag @game.team_2_logo, alt: @game.team_2, width: 50 if @game.team_2_logo.attached? %>
   </div>
 </div>
+
+<%= form_with url: claim_squares_game_path(@game), method: :patch do |f| %>
+  <div style="display: grid; grid-template-columns: repeat(10, 1fr); gap: 8px; margin: 20px 0;">
+    <% @game.squares.order(:row, :column).each do |square| %>
+      <div style="border: 2px solid #ccc; padding: 12px; text-align: center; min-height: 80px; display: flex; flex-direction: column; justify-content: center; align-items: center; border-radius: 4px; <%= 'background-color: #f0f0f0;' if square.user.present? %>">
+        <small style="color: #666; font-size: 0.75em;"><%= square.row %>, <%= square.column %></small>
+
+        <% if square.user.present? %>
+          <strong style="font-size: 0.85em; margin-top: 4px;"><%= square.user.email_address.split('@').first %></strong>
+        <% elsif authenticated? %>
+          <%= check_box_tag 'square_ids[]', square.id, false, id: "square_#{square.id}", style: "transform: scale(1.5); margin-top: 8px;" %>
+          <label for="square_#{square.id}" style="font-size: 0.8em; margin-top: 4px; cursor: pointer;">Available</label>
+        <% else %>
+          <span style="color: #999; font-size: 0.85em;">Available</span>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <% if authenticated? %>
+    <div style="text-align: center; margin: 20px 0;">
+      <%= f.submit "Claim Selected Squares", class: "wa-button", style: "padding: 12px 24px; font-size: 1.1em;" %>
+    </div>
+  <% else %>
+    <div style="text-align: center; margin: 20px 0;">
+      <p>Please <%= link_to "log in", new_session_path %> to claim squares.</p>
+    </div>
+  <% end %>
+<% end %>
 
 <div class="wa-stack">
   <% (0..9).each do |row| %>
@@ -20,7 +49,7 @@
 </div>
 
 <div>
-  <%= link_to "Edit this game", edit_game_path(@game) %> |
+  <%= link_to "Edit this game", edit_game_path(@game) %>
   <%= link_to "Back to games", games_path %>
 
   <%= button_to "Destroy this game", @game, method: :delete %>

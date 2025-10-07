@@ -72,7 +72,7 @@ class GamesController < ApplicationController
     already_claimed = []
 
     square_ids.each do |square_id|
-      square = @games.square.find(square_id)
+      square = @game.squares.find(square_id)
       if square.user_id.present?
         already_claimed << "#{square.row},#{square.column}"
       elsif square.update(user: Current.user)
@@ -81,11 +81,11 @@ class GamesController < ApplicationController
     end
 
     if claimed_count > 0 && already_claimed.empty?
-      redirect_to game, notice: "Successfully claimed #{claimed_count} squares"
+      redirect_to @game, notice: "Successfully claimed #{claimed_count} squares"
     elsif claimed_count > 0 && already_claimed.any?
-      redirect_to game, notice: "Successfully claimed #{claimed_count} squares. Some were already taken..."
+      redirect_to @game, notice: "Successfully claimed #{claimed_count} squares. Some were already taken..."
     else
-      redirect_to game, alert: "Update failed - all of the squares were already claimed..."
+      redirect_to @game, alert: "Update failed - all of the squares were already claimed..."
     end
   end
 
