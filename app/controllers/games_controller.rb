@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: %i[ show edit update destroy ]
+  before_action :set_game, only: %i[ show edit update destroy claim_squares ]
 
   allow_unauthenticated_access only: %i[ index ]
 
@@ -58,6 +58,34 @@ class GamesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to games_path, notice: "Game was successfully destroyed.", status: :see_other }
       format.json { head :no_content }
+    end
+  end
+
+  def claim_squares
+    square_ids = params[:square_ids] || []
+
+    if square_ids.empty?
+      redirect_to game, alert: "Please select at least one square"
+    end
+
+    claimed_count = 0
+    already_claimed = []
+
+    square_ids.each do |square_id|
+      square = @games.square.find(square_id)
+      if square.user_id.present?
+        already_claimed << "#{square.row},#{square.column}"
+      elsif square.update(user: Current.user)
+        claimed_count += 1
+      end
+    end
+
+    if claimed_count > 0 && already_claimed.empty?
+      redirect_to game, notice: "Successfully claimed #{claimed_count} squares"
+    elsif claimed_count > 0 && already_claimed.any?
+      redirect_to game, notice: "Successfully claimed #{claimed_count} squares. Some were already taken..."
+    else
+      redirect_to game, alert: "Update failed - all of the squares were already claimed..."
     end
   end
 

@@ -1,4 +1,13 @@
 <p style="color: green"><%= notice %></p>
+<p style="color: red"><%= alert %></p>
+
+<div class="wa-stack" style="max-width: 900px; margin: 0 auto;">
+  <div class="wa-cluster wa-align-items-center">
+    <%= image_tag @game.team_1_logo, alt: @game.team_1_name, width: 50 if @game.team_1_logo.attached? %>
+    <h1><%= "#{@game.team_1} vs. #{@game.team_2} %></h1>
+    <%= image_tag @game.team_2_logo, alt: @game.team_2_name, width: 50 if @game.team_2_logo.attached? %>
+  </div>
+</div>
 
 <div class="wa-stack">
   <% (0..9).each do |row| %>
