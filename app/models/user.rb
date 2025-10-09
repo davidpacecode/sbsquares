@@ -6,4 +6,10 @@ class User < ApplicationRecord
   has_many :games, through: :squares
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
+
+  enum :role, {
+    member: 0,
+    admin: 1,
+    root: 2
+  }
 end
