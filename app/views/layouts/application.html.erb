@@ -38,6 +38,7 @@
           </div>
         <% end %>
         <div class="wa-cluster">
+          <%= link_to "Hello, #{Current.user.nickname}", edit_user_path(Current.user) if authenticated? %>
           <%= link_to "Log in", new_session_path unless authenticated? %>
           <%= button_to "Log out", session_path, method: :delete if authenticated? %>
         </div>

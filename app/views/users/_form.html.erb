@@ -31,11 +31,13 @@
     <%= form.text_field :nickname %>
   </div>
 
-  <div>
-    <%= form.label :role, style: "display: block" %>
-    <%= form.number_field :role %>
-  </div>
-
+  <% if Current.user.root? %>
+    <div>
+      <%= form.label :role, style: "display: block" %>
+      <%= form.select :role, User.roles.keys.map { |k| [k.titleize, k] }, {}, style: "display: block" %>
+    </div>
+  <% end %>
+  
   <div>
     <%= form.submit %>
   </div>
