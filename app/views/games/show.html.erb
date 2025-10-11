@@ -11,6 +11,14 @@
 
 <br />
 
+<strong><%= "\$#{@game.squares.first.price} per square" %></strong>
+<br />
+<br />
+<strong><%= "You currently owe \$#{@current_total_cost}" %></strong>
+
+<br />
+<br />
+
 <%= form_with url: claim_squares_game_path(@game), method: :patch do |f| %>
   <div class="wa-stack">
     <% @game.squares.order(:row, :column).each do |square| %>

@@ -12,6 +12,8 @@ class GamesController < ApplicationController
 
   # GET /games/1 or /games/1.json
   def show
+    @user = Current.user
+    @current_total_cost = @game.squares.where(user_id: @user.id).count * @game.squares.first.price
   end
 
   # GET /games/new
