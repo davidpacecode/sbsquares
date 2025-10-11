@@ -9,11 +9,13 @@
   </div>
 </div>
 
+<br />
+
 <%= form_with url: claim_squares_game_path(@game), method: :patch do |f| %>
   <div class="wa-stack">
     <% @game.squares.order(:row, :column).each do |square| %>
       <% if square.column == 0 %>
-        <div class="wa-grid">
+        <div class="wa-grid wa-gap-2xs" style="--min-column-size: 3rem;">
       <% end %>
         <div style="border: 2px solid #ccc; padding: 0px; text-align: center; min-height: 5px; justify-content: center; align-items: center; border-radius: 4px; <%= 'background-color: #f0f0f0;' if square.user.present? %>">
           <% if square.user.present? %>
