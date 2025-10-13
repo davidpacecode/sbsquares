@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: %i[ show edit update destroy claim_squares ]
+  before_action :set_game, only: %i[ show edit update destroy claim_squares randomize_numbers ]
 
   allow_unauthenticated_access only: %i[ index ]
 
