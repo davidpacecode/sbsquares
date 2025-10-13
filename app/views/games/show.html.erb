@@ -19,6 +19,11 @@
 <br />
 <br />
 
+<%= button_to "Randomize Numbers", randomize_numbers_game_path(@game), method: :patch %>
+
+<br />
+<br />
+
 <%= form_with url: claim_squares_game_path(@game), method: :patch do |f| %>
   <div class="wa-stack">
     <div class="wa-grid wa-gap-2xs" style="--min-column-size: 3rem;">

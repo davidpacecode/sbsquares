@@ -14,6 +14,12 @@ class Game < ApplicationRecord
     self.team_2_numbers ||= "??????????"
   end
 
+  def randomize_numbers!
+    self.team_1_numbers = (0..9).to_a.shuffle.join
+    self.team_2_numbers = (0..9).to_a.shuffle.join
+    save
+  end
+
   private
 
   def create_squares

@@ -92,6 +92,11 @@ class GamesController < ApplicationController
   end
 
   def randomize_numbers
+    if @game.randomize_numbers!
+      redirect_to @game, notice: "Look at those gorgeous randomized numbers!"
+    else
+      redirect_to @game, alert: "Randomization failed. Looks like I picked the wrong week to quit sniffing glue..."
+    end
   end
 
   private

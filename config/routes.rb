@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :games do
     member do
       patch :claim_squares
+      patch :randomize_numbers
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
