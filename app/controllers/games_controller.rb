@@ -13,7 +13,7 @@ class GamesController < ApplicationController
   # GET /games/1 or /games/1.json
   def show
     @user = Current.user
-    @current_total_cost = @game.squares.where(user_id: @user.id).count * @game.squares.first.price
+    @current_total_cost = @game.squares.where(user_id: @user.id).count * @game.square_price
   end
 
   # GET /games/new
@@ -91,6 +91,9 @@ class GamesController < ApplicationController
     end
   end
 
+  def randomize_numbers
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_game
@@ -99,6 +102,6 @@ class GamesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def game_params
-      params.expect(game: [ :team_1, :team_2, :game_date, :team_1_logo, :team_2_logo, :team_1_numbers, :team_2_numbers ])
+      params.expect(game: [ :team_1, :team_2, :game_date, :team_1_logo, :team_2_logo, :team_1_numbers, :team_2_numbers, :square_price ])
     end
 end

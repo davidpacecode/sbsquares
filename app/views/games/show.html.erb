@@ -11,7 +11,7 @@
 
 <br />
 
-<strong><%= "\$#{@game.squares.first.price} per square" %></strong>
+<strong><%= "\$#{@game.square_price} per square" %></strong>
 <br />
 <br />
 <strong><%= "You currently owe \$#{@current_total_cost}" %></strong>
@@ -21,9 +21,22 @@
 
 <%= form_with url: claim_squares_game_path(@game), method: :patch do |f| %>
   <div class="wa-stack">
+    <div class="wa-grid wa-gap-2xs" style="--min-column-size: 3rem;">
+      <div style="border: 2px solid #ccc; padding: 0px; text-align: center; min-height: 5px; justify-content: center; align-items: center; border-radius: 4px; <%= 'background-color: #f0f0f0;' %>">
+        <%= "#{@game.team_2.first} | #{@game.team_1.first}" %>
+      </div>
+      <% (0..9).each do |x| %>
+        <div style="border: 2px solid #ccc; padding: 0px; text-align: center; min-height: 5px; justify-content: center; align-items: center; border-radius: 4px; <%= 'background-color: #f0f0f0;' %>">
+          <%= @game.team_1_numbers[x] %>
+        </div>
+      <% end %>
+    </div>
     <% @game.squares.order(:row, :column).each do |square| %>
       <% if square.column == 0 %>
         <div class="wa-grid wa-gap-2xs" style="--min-column-size: 3rem;">
+          <div style="border: 2px solid #ccc; padding: 0px; text-align: center; min-height: 5px; justify-content: center; align-items: center; border-radius: 4px; <%= 'background-color: #f0f0f0;' %>">
+            <%= @game.team_2_numbers[square.row] %> 
+          </div>
       <% end %>
         <div style="border: 2px solid #ccc; padding: 0px; text-align: center; min-height: 5px; justify-content: center; align-items: center; border-radius: 4px; <%= 'background-color: #f0f0f0;' if square.user.present? %>">
           <% if square.user.present? %>
