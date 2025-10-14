@@ -11,6 +11,9 @@
 
 <br />
 
+<%= render "scoreboard", game: @game %>
+<br />
+
 <strong><%= "\$#{@game.square_price} per square" %></strong>
 <br />
 <br />
@@ -25,7 +28,7 @@
 <br />
 
 <%= form_with url: claim_squares_game_path(@game), method: :patch do |f| %>
-  <div class="wa-stack">
+  <div class="wa-stack" style="max-width: 800px; min-width: 600px;">
     <div class="wa-grid wa-gap-2xs" style="--min-column-size: 3rem;">
       <div style="border: 2px solid #ccc; padding: 0px; text-align: center; min-height: 5px; justify-content: center; align-items: center; border-radius: 4px; <%= 'background-color: #f0f0f0;' %>">
         <%= "#{@game.team_2.first} | #{@game.team_1.first}" %>

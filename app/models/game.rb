@@ -8,6 +8,7 @@ class Game < ApplicationRecord
 
   after_initialize :set_default_numbers, if: :new_record?
   after_create :create_squares
+  after_create :create_scores
 
   def set_default_numbers
     self.team_1_numbers ||= "??????????"
@@ -27,6 +28,12 @@ class Game < ApplicationRecord
       (0..9).each do |column|
         squares.create!(row: row, column: column, price: square_price)
       end
+    end
+  end
+
+  def create_scores
+    (1..4).each do |q|
+      scores.create!(quarter: q, team_1_score: 0, team_2_score: 0)
     end
   end
 end

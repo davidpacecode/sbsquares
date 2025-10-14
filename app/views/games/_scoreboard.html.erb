@@ -1,0 +1,38 @@
+<div class="wa-stack" style="max-width: 800px; min-width: 600px;">
+  <div class="wa-grid" style="--min-column-size: 3rem;">
+    <div>
+      <strong>Team</strong>
+    </div>
+    <div>
+      <strong>1</strong>
+    </div>
+    <div>
+      <strong>2</strong>
+    </div>
+    <div>
+      <strong>3</strong>
+    </div>
+    <div>
+      <strong>F</strong>
+    </div>
+  </div>
+
+  <% (0..1).each do |n| %>
+    <div class="wa-grid" style="--min-column-size: 3rem;">
+      <div>
+        <strong>
+          <%= @game.team_1 if n == 0 %>
+          <%= @game.team_2 if n == 1 %>
+        </strong>
+      </div>
+      <% @game.scores.order(:quarter).each do |s| %>
+        <div>
+          <%= s.team_1_score if n == 0 %>
+          <%= s.team_2_score if n == 1 %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+</div>
+
