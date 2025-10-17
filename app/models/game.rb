@@ -21,6 +21,15 @@ class Game < ApplicationRecord
     save
   end
 
+  def score (team)
+    score = 0
+    self.scores.each do |s|
+      score += s.team_1_score if team == "team_1"
+      score += s.team_2_score if team == "team_2"
+    end
+    score
+  end
+
   private
 
   def create_squares

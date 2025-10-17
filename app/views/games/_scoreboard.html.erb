@@ -13,7 +13,10 @@
       <strong>3</strong>
     </div>
     <div>
-      <strong>F</strong>
+      <strong>4</strong>
+    </div>
+    <div>
+      <strong>Score</strong>
     </div>
   </div>
 
@@ -31,6 +34,12 @@
           <%= s.team_2_score if n == 1 %>
         </div>
       <% end %>
+      <div>
+        <strong>
+          <%= @game.score "team_1" if n == 0 %>
+          <%= @game.score "team_2" if n == 1 %>
+        </strong>
+      </div>
     </div>
   <% end %>
 
