@@ -1,0 +1,41 @@
+<%= form_with(model: @game, url: update_scores_game_path(@game), method: :patch) do |form| %>
+  <div class="wa-stack" style="max-width: 800px; min-width: 600px;">
+    <div class="wa-grid" style="--min-column-size: 3rem;">
+      <div><strong>Team</strong></div>
+      <div><strong>1</strong></div>
+      <div><strong>2</strong></div>
+      <div><strong>3</strong></div>
+      <div><strong>4</strong></div>
+      <div><strong>Score</strong></div>
+    </div>
+
+    <% [ { name: @game.team_1, prefix: "team_1" }, 
+         { name: @game.team_2, prefix: "team_2" } ].each do |team| %>
+      <div class="wa-grid" style="--min-column-size: 3rem;">
+        <div><strong><%= team[:name] %></strong></div>
+        
+        <% @game.scores.order(:quarter).each do |score| %>
+          <div>
+            <%= form.fields_for "scores[]", score do |score_form| %>
+              <%= score_form.hidden_field :id %>
+              <%= score_form.number_field "#{team[:prefix]}_score", 
+                  value: score.send("#{team[:prefix]}_score"),
+                  style: "width: 3rem;" %>
+            <% end %>
+          </div>
+        <% end %>
+        
+        <div>
+          <strong>
+            <%= @game.score(team[:prefix]) %>
+          </strong>
+        </div>
+      </div>
+    <% end %>
+    
+    <div>
+      <%= form.submit "Update Scores", class: "wa-button" %>
+      <%= link_to "Cancel", @game %>
+    </div>
+  </div>
+<% end %>

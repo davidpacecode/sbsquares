@@ -99,6 +99,28 @@ class GamesController < ApplicationController
     end
   end
 
+  def edit_scores
+    @game = Game.find(params[:id])
+  end
+
+  def update_scores
+    @game = Game.find(params[:id])
+
+    if params[:scores]
+      params[:scores].each do |score_params|
+        score = @game.scores.find(score_params[:id])
+        score.update(
+          team_1_score: score_params[:team_1_score],
+          team_2_score: score_params[:team_2_score]
+        )
+      end
+
+      redirect_to @game, notice: "Scores updated successfully!"
+    else
+      render :edit_scores, status: :unprocessable_entity
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_game
