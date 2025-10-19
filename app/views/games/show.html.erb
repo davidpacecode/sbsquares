@@ -27,25 +27,26 @@
 <br />
 <br />
 
-<%= form_with url: claim_squares_game_path(@game), method: :patch do |f| %>
-  <div class="wa-stack" style="max-width: 800px; min-width: 600px;">
-    <div class="wa-grid wa-gap-2xs" style="--min-column-size: 3rem;">
-      <div style="border: 2px solid #ccc; padding: 0px; text-align: center; min-height: 5px; justify-content: center; align-items: center; border-radius: 4px; <%= 'background-color: #f0f0f0;' %>">
-        <%= "#{@game.team_2.first} | #{@game.team_1.first}" %>
-      </div>
-      <% (0..9).each do |x| %>
+<turbo-frame id="squares_grid">
+  <%= form_with url: claim_squares_game_path(@game), method: :patch do |f| %>
+    <div class="wa-stack" style="max-width: 800px; min-width: 600px;">
+      <div class="wa-grid wa-gap-2xs" style="--min-column-size: 3rem;">
         <div style="border: 2px solid #ccc; padding: 0px; text-align: center; min-height: 5px; justify-content: center; align-items: center; border-radius: 4px; <%= 'background-color: #f0f0f0;' %>">
-          <%= @game.team_1_numbers[x] %>
+          <%= "#{@game.team_2.first} | #{@game.team_1.first}" %>
         </div>
-      <% end %>
-    </div>
-    <% @game.squares.order(:row, :column).each do |square| %>
-      <% if square.column == 0 %>
-        <div class="wa-grid wa-gap-2xs" style="--min-column-size: 3rem;">
+        <% (0..9).each do |x| %>
           <div style="border: 2px solid #ccc; padding: 0px; text-align: center; min-height: 5px; justify-content: center; align-items: center; border-radius: 4px; <%= 'background-color: #f0f0f0;' %>">
-            <%= @game.team_2_numbers[square.row] %> 
+            <%= @game.team_1_numbers[x] %>
           </div>
-      <% end %>
+        <% end %>
+      </div>
+      <% @game.squares.order(:row, :column).each do |square| %>
+        <% if square.column == 0 %>
+          <div class="wa-grid wa-gap-2xs" style="--min-column-size: 3rem;">
+            <div style="border: 2px solid #ccc; padding: 0px; text-align: center; min-height: 5px; justify-content: center; align-items: center; border-radius: 4px; <%= 'background-color: #f0f0f0;' %>">
+              <%= @game.team_2_numbers[square.row] %> 
+            </div>
+        <% end %>
         <div style="border: 2px solid #ccc; padding: 0px; text-align: center; min-height: 5px; justify-content: center; align-items: center; border-radius: 4px; <%= 'background-color: #f0f0f0;' if square.user.present? %>">
           <% if square.user.present? %>
             <strong style="font-size: 0.85em; margin-top: 2px;"><%= square.user.nickname %></strong>
@@ -55,24 +56,25 @@
             <span style="color: #999; font-size: 0.85em;">Available</span>
           <% end %>
         </div>
-      <% if square.column == 9 %>
-        </div>
+        <% if square.column == 9 %>
+          </div>
+        <% end %>
       <% end %>
+    </div>
+
+
+
+    <% if authenticated? %>
+      <div style="text-align: center; margin: 20px 0;">
+        <%= f.submit "Claim Selected Squares", class: "wa-button", style: "padding: 12px 24px; font-size: 1.1em;" %>
+      </div>
+    <% else %>
+      <div style="text-align: center; margin: 20px 0;">
+        <p>Please <%= link_to "log in", new_session_path %> to claim squares.</p>
+      </div>
     <% end %>
-  </div>
-
-
-
-  <% if authenticated? %>
-    <div style="text-align: center; margin: 20px 0;">
-      <%= f.submit "Claim Selected Squares", class: "wa-button", style: "padding: 12px 24px; font-size: 1.1em;" %>
-    </div>
-  <% else %>
-    <div style="text-align: center; margin: 20px 0;">
-      <p>Please <%= link_to "log in", new_session_path %> to claim squares.</p>
-    </div>
   <% end %>
-<% end %>
+</turbo-frame>
 
 <% if false %>
   <div class="wa-stack">
