@@ -11,7 +11,9 @@
 
 <br />
 
-<%= render "scoreboard", game: @game %>
+<turbo-frame id="score_board">
+  <%= render "scoreboard", game: @game %>
+</turbo-frame>
 <br />
 
 <strong><%= "\$#{@game.square_price} per square" %></strong>
