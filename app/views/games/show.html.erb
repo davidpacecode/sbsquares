@@ -19,7 +19,6 @@
 <strong><%= "\$#{@game.square_price} per square" %></strong>
 <br />
 <br />
-<strong><%= "You currently owe \$#{@current_total_cost}" %></strong>
 
 <br />
 <br />
@@ -30,6 +29,8 @@
 <br />
 
 <turbo-frame id="squares_grid">
+  <strong><%= "You currently owe \$#{@current_total_cost}" %></strong>
+
   <%= form_with url: claim_squares_game_path(@game), method: :patch do |f| %>
     <div class="wa-stack" style="max-width: 800px; min-width: 600px;">
       <div class="wa-grid wa-gap-2xs" style="--min-column-size: 3rem;">

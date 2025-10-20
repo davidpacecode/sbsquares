@@ -8,8 +8,8 @@ Rails.application.routes.draw do
     member do
       patch :claim_squares
       patch :randomize_numbers
-      get :edit_scores
       patch :update_scores
+      get :edit_scores
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
