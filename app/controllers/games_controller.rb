@@ -115,7 +115,8 @@ class GamesController < ApplicationController
         )
       end
 
-      redirect_to @game, notice: "Scores updated successfully!"
+      render partial: "scoreboard", locals: { game: @game }
+    #      redirect_to @game, notice: "Scores updated successfully!"
     else
       render :edit_scores, status: :unprocessable_entity
     end
