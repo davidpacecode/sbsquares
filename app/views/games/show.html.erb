@@ -20,15 +20,12 @@
 <br />
 <br />
 
-<br />
-<br />
-
-<%= button_to "Randomize Numbers", randomize_numbers_game_path(@game), method: :patch %>
-
-<br />
-<br />
-
 <turbo-frame id="squares_grid">
+  <%= button_to "Randomize Numbers", randomize_numbers_game_path(@game), method: :patch %>
+
+  <br />
+  <br />
+
   <strong><%= "You currently owe \$#{@current_total_cost}" %></strong>
 
   <%= form_with url: claim_squares_game_path(@game), method: :patch do |f| %>
