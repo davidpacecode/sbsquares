@@ -106,17 +106,25 @@ class GamesController < ApplicationController
   def update_scores
     @game = Game.find(params[:id])
 
-    if params[:scores]
-      params[:scores].each do |score_params|
+    10.times do
+      Rails.logger.debug "FUCK YOU!!!"
+    end
+    Rails.logger.debug "Params: #{params.inspect}"
+    Rails.logger.debug "Scores params: #{params[:scores].inspect}"
+    10.times do
+      Rails.logger.debug "FUCK YOU!!!"
+    end
+
+    if params[:game] && params[:game][:scores]
+      params[:game][:scores].each do |_key, score_params|
         score = @game.scores.find(score_params[:id])
         score.update(
-          team_1_score: score_params[:team_1_score],
-          team_2_score: score_params[:team_2_score]
-        )
-      end
+         team_1_score: score_params[:team_1_score],
+         team_2_score: score_params[:team_2_score]
+      )
+    end
 
-      render partial: "scoreboard", locals: { game: @game }
-    #      redirect_to @game, notice: "Scores updated successfully!"
+      redirect_to @game, notice: "Scores updated successfully!"
     else
       render :edit_scores, status: :unprocessable_entity
     end

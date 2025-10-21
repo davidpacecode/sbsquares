@@ -13,7 +13,7 @@
          { name: @game.team_2, prefix: "team_2" } ].each do |team| %>
       <div class="wa-grid" style="--min-column-size: 3rem;">
         <div><strong><%= team[:name] %></strong></div>
-        
+ 
         <% @game.scores.order(:quarter).each do |score| %>
           <div>
             <%= form.fields_for "scores[]", score do |score_form| %>
@@ -24,7 +24,7 @@
             <% end %>
           </div>
         <% end %>
-        
+
         <div>
           <strong>
             <%= @game.score(team[:prefix]) %>
@@ -32,7 +32,7 @@
         </div>
       </div>
     <% end %>
-    
+
     <div>
       <%= form.submit "Update Scores", class: "wa-button" %>
       <%= link_to "Cancel", @game %>
