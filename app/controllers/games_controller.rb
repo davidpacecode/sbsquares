@@ -14,6 +14,10 @@ class GamesController < ApplicationController
   def show
     @user = Current.user
     @current_total_cost = @game.squares.where(user_id: @user.id).count * @game.square_price
+    @q1_numbers = @game.winning_numbers 1
+    @q2_numbers = @game.winning_numbers 2
+    @q3_numbers = @game.winning_numbers 3
+    @q4_numbers = @game.winning_numbers 4
   end
 
   # GET /games/new
