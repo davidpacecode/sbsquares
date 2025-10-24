@@ -45,7 +45,10 @@ class Game < ApplicationRecord
 
   def winner (quarter)
     lookup_numbers = winning_numbers(quarter)
-    lookup_numbers(:team_1)
+    team_1_digit = lookup_numbers[self.team_1]
+    team_2_digit = lookup_numbers[self.team_2]
+    winning_square = self.squares.where(column: team_1_digit, row: team_2_digit)
+    winning_square.user_id
   end
 
   private
