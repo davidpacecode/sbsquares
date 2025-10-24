@@ -43,6 +43,11 @@ class Game < ApplicationRecord
 
   end
 
+  def winner (quarter)
+    lookup_numbers = winning_numbers(quarter)
+    lookup_numbers(:team_1)
+  end
+
   private
 
   def create_squares

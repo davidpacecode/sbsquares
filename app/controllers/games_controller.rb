@@ -18,6 +18,10 @@ class GamesController < ApplicationController
     @q2_numbers = @game.winning_numbers 2
     @q3_numbers = @game.winning_numbers 3
     @q4_numbers = @game.winning_numbers 4
+    @q1_winner = @game.winner 1
+    @q2_winner = @game.winner 2
+    @q3_winner = @game.winner 3
+    @q4_winner = @game.winner 4
   end
 
   # GET /games/new
