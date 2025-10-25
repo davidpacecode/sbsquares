@@ -1,16 +1,12 @@
-  <% (1..4).each do |n| %>
-    <%= @game.winning_numbers(n) %>
-  <% end %>
-
-<table>
+<table style="width: 300px;">
   <thead>
-    <td>Quarter</td>
-    <td>Winner</td>
+    <td><strong>Place</strong></td>
+    <td><strong>Winner</strong></td>
   </thead>
   <% (1..4).each do |n| %>
     <tr>
       <td><%= n %></td>
-      <td><%= @game.winner(n).nickname %></td>
+      <td><%= @game.winner(n)&.nickname || "" %></td>
     </tr>
   <% end %>
 </table>

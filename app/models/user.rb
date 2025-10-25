@@ -7,6 +7,12 @@ class User < ApplicationRecord
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 
+  after_initialize :set_nickname, if: :new_record?
+
+  def set_nickname
+    self.nickname ||= "Stranger"
+  end
+
   enum :role, {
     member: 0,
     admin: 1,

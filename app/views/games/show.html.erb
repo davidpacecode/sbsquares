@@ -13,18 +13,17 @@
 
 <turbo-frame id="score_board">
   <%= render "scoreboard", game: @game %>
-  <%= render "winners", game: @game %>
+  <%= tag.br %>
+  <%= render "winners", game: @game if @game.is_locked? %>
 </turbo-frame>
 <br />
 
 <strong><%= "\$#{@game.square_price} per square" %></strong>
 <br />
-<br />
 
 <turbo-frame id="squares_grid">
-  <%= button_to "Randomize Numbers", randomize_numbers_game_path(@game), method: :patch %>
+  <%= button_to "Randomize Numbers", randomize_numbers_game_path(@game), method: :patch if Current.user.root? %>
 
-  <br />
   <br />
 
   <strong><%= "You currently owe \$#{@current_total_cost}" %></strong>
@@ -63,11 +62,9 @@
       <% end %>
     </div>
 
-
-
     <% if authenticated? %>
       <div style="text-align: center; margin: 20px 0;">
-        <%= f.submit "Claim Selected Squares", class: "wa-button", style: "padding: 12px 24px; font-size: 1.1em;" %>
+        <%= f.submit "Claim Selected Squares", class: "wa-button", style: "padding: 12px 24px; font-size: 1.1em;" unless @game.is_locked? %>
       </div>
     <% else %>
       <div style="text-align: center; margin: 20px 0;">
@@ -77,41 +74,11 @@
   <% end %>
 </turbo-frame>
 
-<% if false %>
-  <div class="wa-stack">
-    <% (0..9).each do |row| %>
-      <div class="wa-cluster">
-        <% (0..9).each do |column| %>
-          <wa-checkbox></wa-checkbox>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-<% end %>
-
 <div>
-  <%= link_to "Edit this game", edit_game_path(@game) %>
+  <%= link_to "Edit this game", edit_game_path(@game) if Current.user.root? %>
   <%= link_to "Back to games", games_path %>
 
-  <%= button_to "Destroy this game", @game, method: :delete %>
+  <%= button_to "Destroy this game", @game, method: :delete if Current.user.root? %>
 </div>
 
-<% if false %>
-  <div style="display: grid; grid-template-columns: repeat(10, 1fr); gap: 8px; margin: 20px 0;">
-    <% @game.squares.order(:row, :column).each do |square| %>
-      <div style="border: 2px solid #ccc; padding: 12px; text-align: center; min-height: 80px; display: flex; flex-direction: column; justify-content: center; align-items: center; border-radius: 4px; <%= 'background-color: #f0f0f0;' if square.user.present? %>">
-        <small style="color: #666; font-size: 0.75em;"><%= square.row %>, <%= square.column %></small>
-
-        <% if square.user.present? %>
-          <strong style="font-size: 0.85em; margin-top: 4px;"><%= square.user.email_address.split('@').first %></strong>
-        <% elsif authenticated? %>
-          <%= check_box_tag 'square_ids[]', square.id, false, id: "square_#{square.id}", style: "transform: scale(1.5); margin-top: 8px;" %>
-          <label for="square_#{square.id}" style="font-size: 0.8em; margin-top: 4px; cursor: pointer;">Available</label>
-        <% else %>
-          <span style="color: #999; font-size: 0.85em;">Available</span>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-<% end %>
 

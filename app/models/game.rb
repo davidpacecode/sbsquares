@@ -56,6 +56,10 @@ class Game < ApplicationRecord
     user = User.find_by(id: winning_square&.user_id)
   end
 
+  def is_locked?
+    self.squares.where(user_id: nil).count == 0 ? true : false
+  end
+
   private
 
   def create_squares
