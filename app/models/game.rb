@@ -47,7 +47,12 @@ class Game < ApplicationRecord
     lookup_numbers = winning_numbers(quarter)
     team_1_digit = lookup_numbers[self.team_1]
     team_2_digit = lookup_numbers[self.team_2]
-    winning_square = self.squares.find_by(column: team_1_digit, row: team_2_digit)
+
+    # Find the position/index of the score digits in the randomized numbers
+    column = self.team_1_numbers.index(team_1_digit)
+    row = self.team_2_numbers.index(team_2_digit)
+
+    winning_square = self.squares.find_by(column: column, row: row)
     user = User.find_by(id: winning_square&.user_id)
   end
 
