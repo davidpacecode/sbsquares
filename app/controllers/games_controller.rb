@@ -5,6 +5,7 @@ class GamesController < ApplicationController
 
   # GET /games or /games.json
   def index
+    resume_session  # Ensure Current.user is available even for unauthenticated access
     upcoming = Game.where("game_date >= ?", Time.current).order(:game_date)
     past = Game.where("game_date < ?", Time.current).order(game_date: :desc)
     @games = upcoming + past
@@ -105,15 +106,6 @@ class GamesController < ApplicationController
 
   def update_scores
     @game = Game.find(params[:id])
-
-    10.times do
-      Rails.logger.debug "FUCK YOU!!!"
-    end
-    Rails.logger.debug "Params: #{params.inspect}"
-    Rails.logger.debug "Scores params: #{params[:scores].inspect}"
-    10.times do
-      Rails.logger.debug "FUCK YOU!!!"
-    end
 
     if params[:game] && params[:game][:scores]
       params[:game][:scores].each do |_key, score_params|
