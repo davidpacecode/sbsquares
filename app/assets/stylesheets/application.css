@@ -9,6 +9,9 @@
  * Consider organizing styles into separate files for maintainability.
  */
 
+wa-page {
+  background-color: white;
+}
 main {
   border: 1px solid #ddd;
   border-radius: 12px;
