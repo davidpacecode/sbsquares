@@ -35,7 +35,7 @@
     <div class="wa-stack" style="max-width: 800px; width: 100%;">
       <div class="wa-grid wa-gap-2xs" style="--min-column-size: 2rem;">
         <div style="border: 2px solid #ccc; padding: 0px; text-align: center; min-height: 5px; justify-content: center; align-items: center; border-radius: 4px; <%= 'background-color: #f0f0f0;' %>">
-          <%= "#{@game.team_2.first} #{@game.team_1.first}" %>
+          <%= "#{@game.team_2.first}#{@game.team_1.first}" %>
         </div>
         <% (0..9).each do |x| %>
           <div style="border: 2px solid #ccc; padding: 0px; text-align: center; min-height: 5px; justify-content: center; align-items: center; border-radius: 4px; <%= 'background-color: #f0f0f0;' %>">

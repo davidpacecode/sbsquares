@@ -14,7 +14,7 @@ class User < ApplicationRecord
   end
 
   def initials
-    "#{self.first_name[0]} #{self.last_name[0]}"
+    "#{self.first_name[0]}#{self.last_name[0]}"
   end
 
   enum :role, {
