@@ -10,7 +10,11 @@ class User < ApplicationRecord
   after_initialize :set_nickname, if: :new_record?
 
   def set_nickname
-    self.nickname ||= "Stranger"
+   self.nickname ||= self.first_name
+  end
+
+  def initials
+    "#{self.first_name[0]} #{self.last_name[0]}"
   end
 
   enum :role, {
