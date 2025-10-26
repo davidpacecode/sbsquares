@@ -33,12 +33,12 @@
 
   <%= form_with url: claim_squares_game_path(@game), method: :patch do |f| %>
     <div class="wa-stack" style="max-width: 800px; width: 100%;">
-      <div class="wa-grid wa-gap-2xs" style="--min-column-size: 1rem;">
-        <div style="border: 2px solid #ccc; padding: 0px; text-align: center; min-height: 5px; justify-content: center; align-items: center; border-radius: 4px; <%= 'background-color: #f0f0f0;' %>">
+      <div class="wa-grid wa-gap-2xs wa-align-items-center" style="--min-column-size: 1rem;">
+        <div style="border: 2px solid #ccc; padding: 0px; text-align: center; height: 2rem; display: flex; justify-content: center; align-items: center; border-radius: 4px; <%= 'background-color: #f0f0f0;' %>">
           <%= "#{@game.team_2.first}#{@game.team_1.first}" %>
         </div>
         <% (0..9).each do |x| %>
-          <div style="border: 2px solid #ccc; padding: 0px; text-align: center; min-height: 5px; justify-content: center; align-items: center; border-radius: 4px; <%= 'background-color: #f0f0f0;' %>">
+          <div style="border: 2px solid #ccc; padding: 0px; text-align: center; height: 2rem; display: flex; justify-content: center; align-items: center; border-radius: 4px; <%= 'background-color: #f0f0f0;' %>">
             <%= @game.team_1_numbers[x] %>
           </div>
         <% end %>
@@ -46,15 +46,15 @@
       <% @game.squares.order(:row, :column).each do |square| %>
         <% if square.column == 0 %>
           <div class="wa-grid wa-gap-2xs" style="--min-column-size: 2rem;">
-            <div style="border: 2px solid #ccc; padding: 0px; text-align: center; min-height: 5px; justify-content: center; align-items: center; border-radius: 4px; <%= 'background-color: #f0f0f0;' %>">
-              <%= @game.team_2_numbers[square.row] %> 
+            <div style="border: 2px solid #ccc; padding: 0px; text-align: center; height: 2rem; display: flex; justify-content: center; align-items: center; border-radius: 4px; <%= 'background-color: #f0f0f0;' %>">
+              <%= @game.team_2_numbers[square.row] %>
             </div>
         <% end %>
-        <div style="border: 2px solid #ccc; padding: 0px; text-align: center; min-height: 5px; justify-content: center; align-items: center; border-radius: 4px; <%= 'background-color: #f0f0f0;' if square.user.present? %>">
+        <div style="border: 2px solid #ccc; padding: 0px; text-align: center; height: 2rem; display: flex; justify-content: center; align-items: center; border-radius: 4px; <%= 'background-color: #f0f0f0;' if square.user.present? %>">
           <% if square.user.present? %>
-            <strong style="font-size: 0.8em; margin-top: 2px;"><%= square.user.initials %></strong>
+            <strong style="font-size: 0.8em;"><%= square.user.initials %></strong>
           <% elsif authenticated? %>
-            <%= check_box_tag 'square_ids[]', square.id, false, id: "square_#{square.id}", style: "transform: scale(1); margin-top: 4px;" %>
+            <%= check_box_tag 'square_ids[]', square.id, false, id: "square_#{square.id}", style: "transform: scale(1);" %>
           <% else %>
             <span style="color: #999; font-size: 0.85em;">Available</span>
           <% end %>
