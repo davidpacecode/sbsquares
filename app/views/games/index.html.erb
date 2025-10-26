@@ -28,7 +28,9 @@
           </div>
         </div>
       </article>
-      <wa-divider></wa-divider>
+      <% if game != @games.last %>
+        <wa-divider></wa-divider>
+      <% end %>
     </div>
   <% end %>
 </div>
