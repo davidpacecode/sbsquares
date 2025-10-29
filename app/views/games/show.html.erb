@@ -31,11 +31,13 @@
   <br />
   <br />
 
-  <strong>Your current squares:</strong>
-  <% @game.user_squares(Current.user.id).each do |square| %>
-    <%= "#{@game.team_2} #{square[0]}, #{@game.team_1} #{square[1]}" %>
-    <br />
-  <% end %>
+  <wa-details summary="Your current squares" style="max-width: 400px;">
+    <% @game.user_squares(Current.user.id).each do |square| %>
+      <div class="wa-stack">
+        <%= "#{@game.team_2} #{square[0]}, #{@game.team_1} #{square[1]}" %>
+      </div>
+      <% end %>
+  </wa-details>
   <br />
   <br />
 
@@ -46,7 +48,7 @@
           <%= "#{@game.team_2.first}#{@game.team_1.first}" %>
         </div>
         <% (0..9).each do |x| %>
-          <div style="border: 2px solid #ccc; padding: 0px; text-align: center; height: 1.5rem; display: flex; justify-content: center; align-items: center; border-radius: 4px; <%= 'background-color: #f0f0f0;' %>">
+          <div style="border: 2px solid #ccc; padding: 0px; text-align: center; height: 1.5rem; display: flex; justify-content: center; align-items: center; border-radius: 4px; background-color: <%= @game.team_1_color %>;">
             <%= @game.team_1_numbers[x] %>
           </div>
         <% end %>
@@ -54,7 +56,7 @@
       <% @game.squares.order(:row, :column).each do |square| %>
         <% if square.column == 0 %>
           <div class="wa-grid wa-gap-3xs" style="--min-column-size: 1.5rem;">
-            <div style="border: 2px solid #ccc; padding: 0px; text-align: center; height: 1.5rem; display: flex; justify-content: center; align-items: center; border-radius: 4px; <%= 'background-color: #f0f0f0;' %>">
+            <div style="border: 2px solid #ccc; padding: 0px; text-align: center; height: 1.5rem; display: flex; justify-content: center; align-items: center; border-radius: 4px; background-color: <%= @game.team_2_color %>;">
               <%= @game.team_2_numbers[square.row] %>
             </div>
         <% end %>

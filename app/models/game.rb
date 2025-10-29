@@ -65,7 +65,7 @@ class Game < ApplicationRecord
     self.squares.where(user_id: user_id).each_with_index do |square, index|
       squares[index] = [self.team_2_numbers[square.row], self.team_1_numbers[square.column]]
     end
-    squares
+    squares.sort
   end
 
   private
