@@ -31,6 +31,14 @@
   <br />
   <br />
 
+  <strong>Your current squares:</strong>
+  <% @game.user_squares(Current.user.id).each do |square| %>
+    <%= "#{@game.team_2} #{square[0]}, #{@game.team_1} #{square[1]}" %>
+    <br />
+  <% end %>
+  <br />
+  <br />
+
   <%= form_with url: claim_squares_game_path(@game), method: :patch do |f| %>
     <div class="wa-stack" style="max-width: 800px; width: 100%;">
       <div class="wa-grid wa-gap-3xs wa-align-items-center" style="--min-column-size: 1.5rem;">

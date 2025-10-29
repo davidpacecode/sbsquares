@@ -60,6 +60,14 @@ class Game < ApplicationRecord
     self.squares.where(user_id: nil).count == 0 ? true : false
   end
 
+  def user_squares user_id
+    squares = []
+    self.squares.where(user_id: user_id).each_with_index do |square, index|
+      squares[index] = [self.team_2_numbers[square.row], self.team_1_numbers[square.column]]
+    end
+    squares
+  end
+
   private
 
   def create_squares
