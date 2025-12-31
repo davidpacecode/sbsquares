@@ -21,9 +21,22 @@
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <%# Adding my Web Awesome Pro project %>
+    <script src="https://kit.webawesome.com/e754ca862e634dc4.js" crossorigin="anonymous"></script>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
+  <wa-page class="wa-cloak">
+
+
+    <body>
+      <%= yield %>
+    </body>
+
+    <footer slot="footer">
+      <span>Made with <wa-icon name="heart"><wa-icon> in Austin, Texas</span>
+    </footer>
+
+  </wa-page>
+
 </html>
