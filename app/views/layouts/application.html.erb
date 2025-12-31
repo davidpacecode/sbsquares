@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html class="wa-theme-playful wa-palette-rudimentary wa-brand-green wa-cloak">
+<html>
   <head>
     <title><%= content_for(:title) || "Sbsquares" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Sbsquares">
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -20,39 +21,9 @@
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-
-    <%# add Web Awesome and Font Awesome %>
-    <link rel="stylesheet" href="https://early.webawesome.com/webawesome@3.0.0-beta.6/dist/styles/webawesome.css" />
-    <link rel="stylesheet" href="https://early.webawesome.com/webawesome@3.0.0-beta.6/dist/styles/themes/playful.css" />
-    <script type="module" src="https://early.webawesome.com/webawesome@3.0.0-beta.6/dist/webawesome.loader.js"></script>
-    <script src="https://kit.fontawesome.com/dc8a27351f.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
-
-    <wa-page class="wa-system">
-      <header slot="header">
-        <%= link_to root_path, style: "color: inherit; text-decoration: none;" do %>
-          <div class="wa-cluster">
-            <i class="fa-duotone fa-solid fa-football fa-2xl" style="--fa-primary-color: #25511f; --fa-secondary-color: #1e201e;"></i>
-            <span class="wa-heading-xl">Super Bowl Squares</span>
-          </div>
-        <% end %>
-        <div class="wa-cluster">
-          <%= link_to "Hello, #{Current.user.nickname}", edit_user_path(Current.user) if authenticated? %>
-          <%= link_to "Log in", new_session_path unless authenticated? %>
-          <%= button_to "Log out", session_path, method: :delete if authenticated? %>
-        </div>
-      </header>
-
-      <main>
-        <%= yield %>
-      </main>
-
-      <footer slot="footer">
-        <span>Made with <i class="fa-solid fa-heart" style="color: #fb1404;"></i> in Austin, TX</span>
-      </footer>
-    </wa-page>
-
+    <%= yield %>
   </body>
 </html>
