@@ -1,0 +1,41 @@
+<div id="<%= dom_id game %>">
+  <div>
+    <strong>Team 1:</strong>
+    <%= game.team_1 %>
+  </div>
+
+  <% if @game.team_1_logo.attached? %>
+    <div>
+      <strong>Team 1 Logo:</strong>
+      <%= image_tag @game.team_1_logo, width: 100 %>
+    </div>
+  <% end %>
+
+  <div>
+    <strong>Team 2:</strong>
+    <%= game.team_2 %>
+  </div>
+
+  <% if @game.team_2_logo.attached? %>
+    <div>
+      <strong>Team 2 Logo:</strong>
+      <%= image_tag @game.team_2_logo, width: 100 %>
+    </div>
+  <% end %>
+
+  <div>
+    <strong>Sport:</strong>
+    <%= game.sport %>
+  </div>
+
+  <div>
+    <strong>Game datetime:</strong>
+    <%= game.game_datetime %>
+  </div>
+
+  <div>
+    <strong>Status:</strong>
+    <%= game.status %>
+  </div>
+
+</div>
