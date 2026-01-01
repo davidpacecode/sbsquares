@@ -11,42 +11,46 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :team_1, style: "display: block" %>
-    <%= form.text_field :team_1 %>
-  </div>
+  <div class="wa-stack">
+      
+    <div class="wa-stack">
+      <%= form.label :team_1, class: "wa-heading-m", style: "display: block" %>
+      <%= form.text_field :team_1 %>
+    </div>
 
-  <div>
-    <%= form.label :team_2, style: "display: block" %>
-    <%= form.text_field :team_2 %>
-  </div>
+    <div class="wa-stack">
+      <%= form.label :team_2, class: "wa-heading-m", style: "display: block" %>
+      <%= form.text_field :team_2 %>
+    </div>
 
-  <div>
-    <%= form.label :sport, style: "display: block" %>
-    <%= form.text_field :sport %>
-  </div>
+    <div class="wa-stack">
+      <%= form.label :sport, class: "wa-heading-m", style: "display: block" %>
+      <%= form.text_field :sport %>
+    </div>
 
-  <div>
-    <%= form.label :game_datetime, style: "display: block" %>
-    <%= form.datetime_field :game_datetime %>
-  </div>
+    <div class="wa-stack">
+      <%= form.label :game_datetime, class: "wa-heading-m", style: "display: block" %>
+      <%= form.datetime_field :game_datetime %>
+    </div>
 
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.text_field :status %>
-  </div>
+    <div class="wa-stack">
+      <%= form.label :status, class: "wa-heading-m", style: "display: block" %>
+      <%= form.text_field :status %>
+    </div>
 
-  <div>
-    <%= form.label :team_1_logo, style: "display: block" %>
-    <%= form.file_field :team_1_logo %>
-  </div>
+    <div class="wa-stack">
+      <%= form.label :team_1_logo, class: "wa-heading-m", style: "display: block" %>
+      <%= form.file_field :team_1_logo %>
+    </div>
 
-  <div>
-    <%= form.label :team_2_logo, style: "display: block" %>
-    <%= form.file_field :team_2_logo %>
-  </div>
+    <div class="wa-stack">
+      <%= form.label :team_2_logo, class: "wa-heading-m", style: "display: block" %>
+      <%= form.file_field :team_2_logo %>
+    </div>
 
-  <div>
-    <%= form.submit %>
+    <div class="wa-stack">
+      <%= form.submit %>
+    </div>
+
   </div>
 <% end %>
