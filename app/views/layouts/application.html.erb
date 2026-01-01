@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="wa-cloak">
   <head>
     <title><%= content_for(:title) || "Sbsquares" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -28,13 +28,20 @@
 
   <wa-page class="wa-cloak">
 
+    <header slot="header">
+      <%= render "layouts/header" %>
+    </header>
+
+    <nav slot="navigation">
+      <%= render "layouts/nav" %>
+    </nav>
 
     <body>
       <%= yield %>
     </body>
 
     <footer slot="footer">
-      <span>Made with <wa-icon name="heart"></wa-icon> in Austin, Texas</span>
+      <%= render "layouts/footer" %>
     </footer>
 
   </wa-page>
