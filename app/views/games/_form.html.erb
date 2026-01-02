@@ -14,6 +14,15 @@
   <div class="wa-stack">
       
     <div class="wa-stack">
+      <%= form.label :sport, class: "wa-heading-m", style: "display: block" %>
+      <div class="wa-cluster">
+        <%= form.collection_radio_buttons :sport, 
+            [["nfl", "NFL"], ["nba", "NBA"]], :first, :last %>
+      </div>
+
+    </div>
+
+   <div class="wa-stack">
       <%= form.label :team_1, class: "wa-heading-m", style: "display: block" %>
       <%= form.text_field :team_1 %>
     </div>
@@ -23,12 +32,7 @@
       <%= form.text_field :team_2 %>
     </div>
 
-    <div class="wa-stack">
-      <%= form.label :sport, class: "wa-heading-m", style: "display: block" %>
-      <%= form.text_field :sport %>
-    </div>
-
-    <div class="wa-stack">
+     <div class="wa-stack">
       <%= form.label :game_datetime, class: "wa-heading-m", style: "display: block" %>
       <%= form.datetime_field :game_datetime %>
     </div>

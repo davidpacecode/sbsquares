@@ -11,12 +11,13 @@ class Game < ApplicationRecord
                                   message: "%{value} is not a valid status" },
                      allow_nil: true
 
-  # Default status
-  after_initialize :set_default_status, if: :new_record?
+  # Default sport and status
+  after_initialize :set_default_status_and_sport, if: :new_record?
   
   private
   
-  def set_default_status
+  def set_default_status_and_sport
     self.status ||= 'scheduled'
+    self.sport ||= 'nfl'
   end
 end
