@@ -4,13 +4,24 @@
 
 <h3>Games</h3>
 
-<div id="games">
-  <% @games.each do |game| %>
-    <%= render game %>
-    <p>
-      <%= link_to "Show this game", game %>
-    </p>
-  <% end %>
+<div class="wa-stack wa-gap-3xs" style="max-width: 60ch; margin: auto">
+  <div id="games">
+    <% @games.each do |game| %>
+      <article class="wa-flank" style="flex-wrap: nowrap">
+        <wa-avatar style="--size: 2rem">
+          <wa-icon slot="icon" family="sharp-duotone" type="thin" name="<%= sport_icon_tag(game.sport) %>"></wa-icon>
+        </wa-avatar>
+        <div class="wa-flank:end wa-gap-xs">
+          <strong><%= link_to "#{game.team_1} vs #{game.team_2}", game, class: "wa-link-plain" %></strong>
+          <wa-format-date date="<%= game.game_datetime %>" month="long" day="numeric" year="numeric" ></wa-format-date>
+        </div>
+      </article>
+      <wa-divider vertical style="height: 1em; margin-left: 1rem"></wa-divider>
+    <% end %>
+  </div>
 </div>
 
+
 <%= link_to "New game", new_game_path %>
+
+
