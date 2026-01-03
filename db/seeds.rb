@@ -7,3 +7,13 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+## db/seeds.rb
+Team.create!([
+  { city: "New York", name: "Jets", sport: :nfl },
+  { city: "Buffalo", name: "Bills", sport: :nfl },
+  { city: "Kansas City", name: "Chiefs", sport: :nfl },
+  { city: "San Francisco", name: "49ers", sport: :nfl },
+  { city: "Philadelphia", name: "Eagles", sport: :nfl },
+  { city: "Los Angeles", name: "Lakers", sport: :nba },
+  { city: "Boston", name: "Celtics", sport: :nba }
+])

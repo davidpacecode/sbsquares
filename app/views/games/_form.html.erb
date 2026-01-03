@@ -13,48 +13,19 @@
 
   <div class="wa-stack">
       
-    <div class="wa-stack">
-      <%= form.label :sport, class: "wa-heading-m", style: "display: block" %>
-      <div class="wa-cluster">
-        <%= form.collection_radio_buttons :sport, 
-            [["nfl", "NFL"], ["nba", "NBA"]], :first, :last %>
-      </div>
-
-    </div>
-
-   <div class="wa-stack">
-      <%= form.label :home_team, class: "wa-heading-m", style: "display: block" %>
-      <%= form.text_field :home_team %>
-    </div>
-
-    <div class="wa-stack">
-      <%= form.label :away_team, class: "wa-heading-m", style: "display: block" %>
-      <%= form.text_field :away_team %>
-    </div>
-
-     <div class="wa-stack">
-      <%= form.label :game_datetime, class: "wa-heading-m", style: "display: block" %>
-      <%= form.datetime_field :game_datetime %>
-    </div>
-
-    <div class="wa-stack">
-      <%= form.label :status, class: "wa-heading-m", style: "display: block" %>
-      <%= form.text_field :status %>
-    </div>
-
-    <div class="wa-stack">
-      <%= form.label :home_team_logo, class: "wa-heading-m", style: "display: block" %>
-      <%= form.file_field :home_team_logo %>
-    </div>
-
-    <div class="wa-stack">
-      <%= form.label :away_team_logo, class: "wa-heading-m", style: "display: block" %>
-      <%= form.file_field :away_team_logo %>
-    </div>
-
-    <div class="wa-stack">
-      <%= form.submit %>
-    </div>
+    
+    <%= form.label :home_team_id %>
+    <%= form.collection_select :home_team_id, 
+        Team.all, :id, :full_name,
+        { prompt: "Select home team..." } %>
+    
+    <%= form.label :away_team_id %>
+    <%= form.collection_select :away_team_id,
+        Team.all, :id, :full_name,
+        { prompt: "Select away team..." } %>
+        
+    <%= form.datetime_field :game_datetime %>
+    <%= form.submit %>
 
   </div>
 <% end %>

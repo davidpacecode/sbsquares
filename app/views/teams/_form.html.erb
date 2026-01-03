@@ -1,0 +1,45 @@
+<%= form_with model: team do |f| %>
+  <% if team.errors.any? %>
+    <div style="color: red">
+      <h4><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h4>
+      <ul>
+        <% team.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="wa-stack">
+    <div>
+      <%= f.label :sport %>
+      <%= f.select :sport, 
+          Team.sports.keys.map { |s| [s.titleize, s] },
+          { prompt: "Select sport..." } %>
+    </div>
+
+    <div>
+      <%= f.label :city %>
+      <%= f.text_field :city %>
+    </div>
+
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div>
+      <%= f.label :logo %>
+      <%= f.file_field :logo %>
+      
+      <% if team.logo.attached? %>
+        <div>
+          <p>Current logo:</p>
+          <%= image_tag team.logo, width: 100 %>
+        </div>
+      <% end %>
+    </div>
+
+    <%= f.submit %>
+  </div>
+<% end %>

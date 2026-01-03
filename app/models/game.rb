@@ -1,13 +1,10 @@
 class Game < ApplicationRecord
-  # ActiveStorage attachments for team logos
-  has_one_attached :team_1_logo
-  has_one_attached :team_2_logo
+  belongs_to :home_team, class_name: 'Team'
+  belongs_to :away_team, class_name: 'Team'
   
-  # Validations
-  validates :team_1, :team_2, :sport, :game_datetime, presence: true
-  validates :sport, inclusion: { in: %w[nfl ncaa_football ncaa_basketball nba], 
-                                 message: "%{value} is not a valid sport" }
-  validates :status, inclusion: { in: %w[scheduled in_progress completed cancelled],
+  validates :home_team, :away_team, :game_datetime, presence: true
+  
+  validates :status, inclusion: { in: %w[scheduled in_progress completed],
                                   message: "%{value} is not a valid status" },
                      allow_nil: true
 
@@ -16,8 +13,12 @@ class Game < ApplicationRecord
             numericality: { only_integer: true, greater_than_or_equal_to: 0 }, 
             allow_nil: true  
 
-  # Default sport and status
-  after_initialize :set_default_status_and_sport, if: :new_record?
+  # Default status
+  after_initialize :set_default_status, if: :new_record?
+
+  def sport
+    home_team&.sport
+  end
   
   # Helper method to get score pairs
   def quarter_scores
@@ -40,8 +41,7 @@ class Game < ApplicationRecord
 
   private
   
-  def set_default_status_and_sport
+  def set_default_status
     self.status ||= 'scheduled'
-    self.sport ||= 'nfl'
   end
 end

@@ -1,0 +1,19 @@
+<h3>Teams</h3>
+
+
+<div class="wa-stack wa-gap-3xs">
+  <% @teams.each do |team| %>
+    <div class="wa-flank">
+      <% if team.logo.attached? %>
+        <%= image_tag team.logo, width: 50 %>
+      <% end %>
+      <div>
+        <%= link_to team.full_name, team %>
+        <small>(<%= team.sport %>)</small>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to "New Team", new_team_path %>
+

@@ -1,0 +1,11 @@
+<h3><%= @team.full_name %></h3>
+
+<% if @team.logo.attached? %>
+  <%= image_tag @team.logo, width: 200 %>
+<% end %>
+
+<p><strong>Sport:</strong> <%= @team.sport %></p>
+
+<%= link_to "Edit", edit_team_path(@team) %>
+<%= link_to "Back to Teams", teams_path %>
+<%= button_to "Delete", @team, method: :delete, data: { confirm: "Are you sure?" } %>
