@@ -1,4 +1,8 @@
 <div id="<%= dom_id game %>">
+
+  <%= render "scoreboard", game: game %>
+
+
   <div>
     <strong>Home team:</strong>
     <%= game.home_team.full_name %>

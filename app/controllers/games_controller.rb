@@ -76,8 +76,8 @@ class GamesController < ApplicationController
         :q2_away,
         :q3_home,
         :q3_away,
-        :final_home,
-        :final_away
+        :q4_home,
+        :q4_away
       ])
     end
    end

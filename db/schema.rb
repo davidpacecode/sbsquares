@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_03_023311) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_03_032148) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -42,8 +42,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_03_023311) do
   create_table "games", force: :cascade do |t|
     t.integer "away_team_id"
     t.datetime "created_at", null: false
-    t.integer "final_away"
-    t.integer "final_home"
     t.datetime "game_datetime"
     t.integer "home_team_id"
     t.integer "q1_away"
@@ -52,6 +50,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_03_023311) do
     t.integer "q2_home"
     t.integer "q3_away"
     t.integer "q3_home"
+    t.integer "q4_away"
+    t.integer "q4_home"
     t.string "status"
     t.datetime "updated_at", null: false
     t.index ["away_team_id"], name: "index_games_on_away_team_id"
