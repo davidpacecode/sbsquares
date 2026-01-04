@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: %i[ show edit update destroy ]
+
+  before_action :set_game, only: %i[ show edit update destroy edit_scores update_scores ]
 
   # GET /games or /games.json
   def index
@@ -17,6 +18,19 @@ class GamesController < ApplicationController
 
   # GET /games/1/edit
   def edit
+  end
+
+  # ...
+  def edit_scores
+  end
+  
+  # ...
+  def update_scores
+    if @game.update(score_params)
+      render partial: 'scoreboard', locals: { game: @game }
+    else
+      render partial: 'scoreboard_form', locals: { game: @game }, status: :unprocessable_entity
+    end
   end
 
   # POST /games or /games.json
@@ -80,4 +94,15 @@ class GamesController < ApplicationController
         :q4_away
       ])
     end
-   end
+
+    # NEW method - only allows score attributes
+    def score_params
+      params.expect(game: [
+        :q1_home, :q1_away,
+        :q2_home, :q2_away,
+        :q3_home, :q3_away,
+        :q4_home, :q4_away,
+        :status
+      ])
+    end
+end

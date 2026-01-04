@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   get "about", to: "pages#about"
-  resources :games
+  resources :games do
+    member do
+      get "edit_scores"
+      patch "update_scores"
+    end
+  end
   resources :teams
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -1,7 +1,9 @@
 <div id="<%= dom_id game %>">
 
-  <%= render "scoreboard", game: game %>
-
+  <%= turbo_frame_tag "scoreboard_#{game.id}" do %>
+    <%= render "scoreboard", game: game %>
+    <%= link_to "Edit Scores", edit_scores_game_path(game) %>
+  <% end %>
 
   <div>
     <strong>Home team:</strong>

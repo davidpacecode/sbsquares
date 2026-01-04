@@ -9,7 +9,7 @@ class Game < ApplicationRecord
                      allow_nil: true
 
   validates :q1_home, :q1_away, :q2_home, :q2_away, :q3_home, :q3_away, 
-            :final_home, :final_away, 
+            :q4_home, :q4_away, 
             numericality: { only_integer: true, greater_than_or_equal_to: 0 }, 
             allow_nil: true  
 
@@ -26,7 +26,7 @@ class Game < ApplicationRecord
       q1: { home: q1_home, away: q1_away },
       q2: { home: q2_home, away: q2_away },
       q3: { home: q3_home, away: q3_away },
-      final: { home: final_home, away: final_away }
+      q4: { home: q4_home, away: q4_away }
     }
   end
   
