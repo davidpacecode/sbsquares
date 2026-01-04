@@ -1,7 +1,14 @@
-<%= link_to "/", style: "text-decoration: none;" do %>
-  <div class="wa-cluster" style="font-size: 30px;">
-    <wa-icon family="sharp-duotone" type="thin" name="football" style="--primary-color: var(--wa-color-yellow-20); --secondary-color: var(--wa-color-gray-95);"></wa-icon>
-    <wa-icon family="sharp-duotone" type="thin" name="basketball" style="--primary-color: var(--wa-color-gray-05); --secondary-color: var(--wa-color-red-10);"></wa-icon>
-    <strong class="wa-heading-2xl" style="color: #000000;">Sportsball Squares</strong>
+<div class="wa-cluster" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+  <%= link_to "/", style: "text-decoration: none;" do %>
+    <div class="wa-cluster" style="font-size: 30px;">
+      <wa-icon family="sharp-duotone" type="thin" name="football" style="--primary-color: var(--wa-color-yellow-20); --secondary-color: var(--wa-color-gray-95);"></wa-icon>
+      <wa-icon family="sharp-duotone" type="thin" name="basketball" style="--primary-color: var(--wa-color-gray-05); --secondary-color: var(--wa-color-red-10);"></wa-icon>
+      <strong class="wa-heading-2xl" style="color: #000000;">Sportsball Squares</strong>
+    </div>
+  <% end %>
+  <div>
+    <%= link_to "Log in", new_session_path, style: "text-decoration: none;" unless authenticated? %>
+    <%= link_to "Log out", session_path, style: "text-decoration: none;", data: { turbo_method: :delete } if authenticated? %>
   </div>
-<% end %>
+</div>
+
