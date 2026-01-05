@@ -1,6 +1,7 @@
 class Game < ApplicationRecord
   belongs_to :home_team, class_name: 'Team'
   belongs_to :away_team, class_name: 'Team'
+  has_many :boards, dependent: :destroy
   
   validates :home_team, :away_team, :game_datetime, presence: true
   

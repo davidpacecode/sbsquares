@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :squares
+  resources :boards
   resource :session
   resources :passwords, param: :token
   get "about", to: "pages#about"

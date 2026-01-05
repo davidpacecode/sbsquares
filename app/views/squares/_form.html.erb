@@ -1,0 +1,42 @@
+<%= form_with(model: square) do |form| %>
+  <% if square.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(square.errors.count, "error") %> prohibited this square from being saved:</h2>
+
+      <ul>
+        <% square.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :row, style: "display: block" %>
+    <%= form.number_field :row %>
+  </div>
+
+  <div>
+    <%= form.label :column, style: "display: block" %>
+    <%= form.number_field :column %>
+  </div>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.label :board_id, style: "display: block" %>
+    <%= form.text_field :board_id %>
+  </div>
+
+  <div>
+    <%= form.label :nickname, style: "display: block" %>
+    <%= form.text_field :nickname %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

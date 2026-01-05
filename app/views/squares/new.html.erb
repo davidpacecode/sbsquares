@@ -1,0 +1,11 @@
+<% content_for :title, "New square" %>
+
+<h1>New square</h1>
+
+<%= render "form", square: @square %>
+
+<br>
+
+<div>
+  <%= link_to "Back to squares", squares_path %>
+</div>

@@ -21,7 +21,7 @@
   </div>
 </div>
 
-
-<%= link_to "New game", new_game_path %>
-
+<% if current_user_admin? %>
+  <%= link_to "New game", new_game_path %>
+<% end %>
 
