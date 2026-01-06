@@ -20,11 +20,18 @@
     <%= form.label :square_price, style: "display: block" %>
     <%= form.number_field :square_price %>
   </div>
+  
+  <div>
+    <%= form.label :game_id, style: "display: block" %>
+    <%= form.select :game_id, Game.all.map { |game| [game.title, game.id] } %>
+  </div>
 
+  <% if false %>
   <div>
     <%= form.label :game_id, style: "display: block" %>
     <%= form.text_field :game_id %>
   </div>
+  <% end %>
 
   <div>
     <%= form.submit %>

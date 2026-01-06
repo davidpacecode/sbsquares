@@ -40,6 +40,10 @@ class Game < ApplicationRecord
     send("#{quarter}_away")&.to_s&.last&.to_i
   end
 
+  def title
+    "#{game_datetime.strftime('%B %-d, %Y')} at #{home_team&.name} vs #{away_team&.name}"
+  end
+
   private
   
   def set_default_status
