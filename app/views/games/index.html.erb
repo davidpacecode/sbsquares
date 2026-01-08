@@ -21,18 +21,6 @@
   </div>
 </div>
 
-<% if Current.user&.admin? %>
-  <p style="background: yellow; padding: 1rem; font-size: 24px; font-weight: bold;">ADMIN SECTION - YOU SHOULD SEE THIS</p>
-  <div style="margin: 2rem auto; text-align: center;">
-    <%= link_to "New game", new_game_path, class: "wa-button" %>
-  </div>
-<% end %>
+<%# need to fix the current_user_admin? bug %>
+<%= link_to "New game", new_game_path, class: "wa-button" %>
 
-<% if authenticated? %>
-  <p>Logged in: <%= Current.user&.email_address %></p>
-  <p>Role: <%= Current.user&.role %></p>
-  <p>Admin?: <%= Current.user&.admin? %></p>
-  <p>Helper result: <%= current_user_admin? %></p>
-<% else %>
-  <p>Not logged in</p>
-<% end %>
