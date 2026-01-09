@@ -57,6 +57,19 @@ class BoardsController < ApplicationController
     end
   end
 
+  def claim_squares
+
+    @board = Board.find(params[:id])
+    square_ids = params[:square_ids] || []
+
+    @board.squares.where(id: square_ids).update_all(
+      user_id: Current.user.id,
+      nickname: Current.user.nickname
+    )
+
+    redirect_to @board, notice: "Board is #{@board.id} square_ids = #{square_ids}"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_board

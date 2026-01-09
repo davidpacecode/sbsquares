@@ -1,16 +1,19 @@
-<%= form_with(model: board) do |form| %>
+<%= form_with(url: claim_squares_board_path(board), method: :post) do |form| %>
 
   <div class="wa-grid wa-gap-xs" style="grid-template-columns: repeat(10, 5rem);">
     <% (0..9).each do |row| %>
       <% (0..9).each do |column| %>
-        <% if board.squares.find_by(row: row, column: column)&.nickname %>
-          <wa-card ><%= "#{board.squares.find_by(row: row, column: column)&.nickname}" %></wa-card>
+        <% square = board.squares.find_by(row: row, column: column) %>
+        <% if square.nickname.present? %>
+          <wa-card ><%= "#{square.nickname}" %></wa-card>
         <% else %>
-          <wa-card ><%= "FU" %></wa-card>
+          <wa-card >
+            <%= check_box_tag "square_ids[]", square.id, false, id: "square_#{square.id}" %>
+          </wa-card>
         <% end %>
       <% end %>
     <% end %>
   </div>
-  <%= form.submit %>
+  <%= form.submit "Claim Squares" %>
 <% end %>
 
