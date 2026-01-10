@@ -2,7 +2,9 @@
 
 <%= render @board %>
 
-<%= render "grid", board: @board %>
+<%= turbo_frame_tag "grid_#{@board.id}" do %>
+  <%= render "grid", board: @board %>
+<% end %>
 
 I come after the grid
 
