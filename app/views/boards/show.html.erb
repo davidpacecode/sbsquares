@@ -2,6 +2,8 @@
 
 <%= render @board %>
 
+<%= render "games/scoreboard", game: @board.game %>
+
 <%= turbo_frame_tag "grid_#{@board.id}" do %>
   <%= render "grid", board: @board %>
 <% end %>

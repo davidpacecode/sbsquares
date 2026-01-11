@@ -30,7 +30,8 @@ class GamesController < ApplicationController
   # ...
   def update_scores
     if @game.update(score_params)
-      render partial: 'scoreboard', locals: { game: @game }
+  #    render partial: 'scoreboard', locals: { game: @game }
+      redirect_to @game, notice: "Game was successfully updated."
     else
       render partial: 'scoreboard_form', locals: { game: @game }, status: :unprocessable_entity
     end

@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "scoreboard_#{@game.id}" do %>
   <%= form_with(model: @game, url: update_scores_game_path(@game), method: :patch) do |form| %>
-    <table>
+    <table style="max-width: 600px;">
       <thead style="font-weight: bold;">
         <td>Team</td>
         <td>1</td>
