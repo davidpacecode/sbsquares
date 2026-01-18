@@ -1,26 +1,33 @@
 <%= turbo_frame_tag "grid_#{board.id}" do %>
   <%= form_with(url: claim_squares_board_path(board), method: :post) do |form| %>
 
-    <div class="wa-grid wa-gap-xs" style="grid-template-columns: repeat(11, 5rem);">
-      <% (0..10).each do %>
-        <wa-card ></wa-card>
-      <% end %>
-      <% (0..9).each do |row| %>
-        <% (0..10).each do |column| %>
-          <% if column == 0 %>
+    <div class="wa-stack" style="align-items: center;">
+      <%= image_tag board.game.home_team.logo, size: "100x100" %>
+      <div class="wa-flank">
+        <%= image_tag board.game.away_team.logo, size: "100x100"  %>
+
+        <div class="wa-grid wa-gap-xs" style="grid-template-columns: repeat(11, 5rem);">
+          <% (0..10).each do %>
             <wa-card ></wa-card>
-          <% else %>
-            <% square = board.squares.find_by(row: row, column: column-1) %>
-            <% if square.nickname.present? %>
-              <wa-card ><%= "#{square.nickname}" %></wa-card>
-            <% else %>
-              <wa-card >
-                <%= check_box_tag "square_ids[]", square.id, false, id: "square_#{square.id}" %>
-              </wa-card>
+          <% end %>
+          <% (0..9).each do |row| %>
+            <% (0..10).each do |column| %>
+              <% if column == 0 %>
+                <wa-card ></wa-card>
+              <% else %>
+                <% square = board.squares.find_by(row: row, column: column-1) %>
+                <% if square.nickname.present? %>
+                  <wa-card ><%= "#{square.nickname}" %></wa-card>
+                <% else %>
+                  <wa-card >
+                    <%= check_box_tag "square_ids[]", square.id, false, id: "square_#{square.id}" %>
+                  </wa-card>
+                <% end %>
+              <% end %>
             <% end %>
           <% end %>
-        <% end %>
-      <% end %>
+        </div>
+      </div>
     </div>
     <%= form.submit "Claim Squares" %>
   <% end %>
