@@ -7,13 +7,13 @@
         <%= image_tag board.game.away_team.logo, size: "100x100"  %>
 
         <div class="wa-grid wa-gap-xs" style="grid-template-columns: repeat(11, 5rem);">
-          <% (0..10).each do %>
-            <wa-card ></wa-card>
+          <% (0..10).each do |col| %>
+            <wa-card ><%= board.home_digit_for(col-1) unless col == 0 %></wa-card>
           <% end %>
           <% (0..9).each do |row| %>
             <% (0..10).each do |column| %>
               <% if column == 0 %>
-                <wa-card ></wa-card>
+                <wa-card ><%= board.away_digit_for(row) %></wa-card>
               <% else %>
                 <% square = board.squares.find_by(row: row, column: column-1) %>
                 <% if square.nickname.present? %>

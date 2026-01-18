@@ -9,6 +9,25 @@ class Board < ApplicationRecord
 
   after_create :create_squares
 
+  def home_digit_for(column)
+    home_team_numbers[column]
+  end
+
+  def away_digit_for(row)
+    away_team_numbers[row]
+  end
+
+  def randomize_numbers!
+    update!(
+      home_team_numbers: (0..9).to_a.shuffle.join,
+      away_team_numbers: (0..9).to_a.shuffle.join
+    )
+  end
+
+  def numbers_randomized?
+    !home_team_numbers.include?("?")
+  end
+
   private
 
   def create_squares
