@@ -4,6 +4,9 @@
 
 <%= render "games/scoreboard", game: @board.game %>
 
+<%= render "your_squares", board: @board %>
+<wa-button>Your Squares</wa-button>
+
 <%= turbo_frame_tag "grid_#{@board.id}" do %>
   <%= render "grid", board: @board %>
 <% end %>
@@ -16,3 +19,10 @@ I come after the grid
 
   <%= button_to "Destroy this board", @board, method: :delete %>
 </div>
+
+<script>
+  const drawer = document.querySelector('#your-squares');
+  const openButton = drawer.nextElementSibling;
+
+  openButton.addEventListener('click', () => (drawer.open = true));
+</script>

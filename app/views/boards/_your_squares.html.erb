@@ -1,0 +1,23 @@
+<wa-drawer label="Your Squares" id="your-squares">
+
+  <table style="max-width: 300px;">
+    <caption class="wa-heading-l">Good Luck!</caption>
+    <thead style="font-weight: bold;">
+      <td><%= board.game.home_team.full_name %></td>
+      <td><%= board.game.away_team.full_name %></td>
+    </thead>
+    <tbody>
+      <% board.squares.where(user_id: Current.user.id).each do |square| %> 
+        <tr>
+          <td><%= board.home_digit_for(square.column) %></td>
+          <td><%= board.away_digit_for(square.row) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <wa-button slot="footer" variant="brand" data-drawer="close">Close</wa-button>
+</wa-drawer>
+
+
+
