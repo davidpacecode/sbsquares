@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :boards do
     member do
       post "claim_squares"
+      post "randomize_numbers"
     end
   end
   resource :session

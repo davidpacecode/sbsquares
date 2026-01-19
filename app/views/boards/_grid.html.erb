@@ -31,4 +31,5 @@
     </div>
     <%= form.submit "Claim Squares" %>
   <% end %>
+  <%= button_to "Randomize Numbers", randomize_numbers_board_path(board) if current_user_admin? %>
 <% end %>

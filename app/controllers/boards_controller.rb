@@ -70,6 +70,16 @@ class BoardsController < ApplicationController
     redirect_to @board, notice: "Board is #{@board.id} square_ids = #{square_ids}"
   end
 
+  def randomize_numbers
+
+    @board = Board.find(params[:id])
+
+    @board.randomize_numbers!
+
+    redirect_to @board, notice: "Board is #{@board.id}"
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_board
