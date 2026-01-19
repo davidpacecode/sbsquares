@@ -4,6 +4,8 @@
 
 <%= render "games/scoreboard", game: @board.game %>
 
+<%= render "winners", board: @board %>
+
 <%= render "your_squares", board: @board %>
 <wa-button>Your Squares</wa-button>
 
@@ -11,7 +13,7 @@
   <%= render "grid", board: @board %>
 <% end %>
 
-I come after the grid
+I nners.co me after the grid
 
 <div>
   <%= link_to "Edit this board", edit_board_path(@board) %> |
