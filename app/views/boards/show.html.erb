@@ -6,14 +6,13 @@
 
 <%= render "winners", board: @board %>
 
-<%= render "your_squares", board: @board %>
-<wa-button>Your Squares</wa-button>
-
 <%= turbo_frame_tag "grid_#{@board.id}" do %>
+  <%= render "your_squares", board: @board %>
   <%= render "grid", board: @board %>
 <% end %>
+<wa-button>Your Squares</wa-button>
 
-I nners.co me after the grid
+I come after the grid
 
 <div>
   <%= link_to "Edit this board", edit_board_path(@board) %> |
