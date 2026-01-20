@@ -13,12 +13,6 @@
 
 <wa-button id="your-squares-button">Your Squares</wa-button>
 
-<script>
-  document.getElementById('your-squares-button').addEventListener('click', () => {
-    document.getElementById('your-squares-drawer').open = true;
-  });
-</script>
-
 <div>
   <%= link_to "Edit this board", edit_board_path(@board) %> |
   <%= link_to "Back to boards", boards_path %>
@@ -26,4 +20,9 @@
   <%= button_to "Destroy this board", @board, method: :delete %>
 </div>
 
+<script>
+  document.getElementById('your-squares-button').addEventListener('click', () => {
+    document.getElementById('your-squares-drawer').open = true;
+  });
+</script>
 
