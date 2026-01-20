@@ -10,9 +10,14 @@
   <%= render "your_squares", board: @board %>
   <%= render "grid", board: @board %>
 <% end %>
-<wa-button>Your Squares</wa-button>
 
-I come after the grid
+<wa-button id="your-squares-button">Your Squares</wa-button>
+
+<script>
+  document.getElementById('your-squares-button').addEventListener('click', () => {
+    document.getElementById('your-squares-drawer').open = true;
+  });
+</script>
 
 <div>
   <%= link_to "Edit this board", edit_board_path(@board) %> |
@@ -21,9 +26,4 @@ I come after the grid
   <%= button_to "Destroy this board", @board, method: :delete %>
 </div>
 
-<script>
-  const drawer = document.querySelector('#your-squares');
-  const openButton = drawer.nextElementSibling;
 
-  openButton.addEventListener('click', () => (drawer.open = true));
-</script>
