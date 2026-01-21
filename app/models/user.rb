@@ -6,4 +6,9 @@ class User < ApplicationRecord
 
   enum :role, { player: 0, admin: 1 }, default: :player
 
+  validates :first_name, :last_name, presence: true
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

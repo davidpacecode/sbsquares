@@ -40,7 +40,20 @@ class Game < ApplicationRecord
     send("#{quarter}_away")&.to_s&.last&.to_i
   end
 
-  def title
+  # Get WINNING digit for a specific quarter
+  def winning_digit_for_quarter(quarter_num, home_or_away)
+    sum = 0
+    (1..quarter_num).each do |i|
+      sum += send("q#{i}_#{home_or_away}")&.to_i
+    end
+    sum.to_s.last.to_i
+  end
+  
+  def away_digit_for_quarter(quarter)
+    send("#{quarter}_away")&.to_s&.last&.to_i
+  end
+
+ def title
     "#{game_datetime.strftime('%B %-d, %Y')} at #{home_team&.name} vs #{away_team&.name}"
   end
 
