@@ -2,13 +2,20 @@
   <caption class="wa-heading-l">Winners!</caption>
   <thead style="font-weight: bold;">
     <td>Quarter</td>
+    <td>Home Team</td>
+    <td>Away Team</td>
     <td>Winner</td>
   </thead>
   <tbody>
-    <% 4.times do |i| %>
-      Fuck you
+    <% (1..4).each do |i| %>
+      <tr>
+        <td><%= i %></td>
+        <td><%= board.game.home_digit_for_quarter((i).to_s.prepend('q')) %></td>
+        <td><%= board.game.away_digit_for_quarter((i).to_s.prepend('q')) %></td>
+        <td>Sato</td>
+      </tr>
     <% end %>
   </tbody>
 </table>
 
-
+<%= board.game.quarter_scores %>
