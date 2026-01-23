@@ -12,7 +12,7 @@
         <td><%= i %></td>
         <td><%= board.game.winning_digit_for_quarter(i,"home") %></td>
         <td><%= board.game.winning_digit_for_quarter(i,"away") %></td>
-        <td>Sato</td>
+        <td><%= board.winning_square(board.game.winning_digit_for_quarter(i,"home"),board.game.winning_digit_for_quarter(i,"away")) %></td>
       </tr>
     <% end %>
   </tbody>

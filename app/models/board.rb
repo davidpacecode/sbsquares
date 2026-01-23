@@ -28,6 +28,14 @@ class Board < ApplicationRecord
     !home_team_numbers.include?("?")
   end
 
+  def winning_square(home_digit, away_digit)
+    [home_team_numbers.index(home_digit.to_s), away_team_numbers.index(away_digit.to_s)]
+  end
+
+  def winner()
+
+  end
+
   private
 
   def create_squares
