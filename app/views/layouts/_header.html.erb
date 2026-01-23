@@ -6,9 +6,9 @@
       <strong class="wa-heading-2xl" style="color: #000000;">Sportsball Squares</strong>
     </div>
   <% end %>
-  <div>
-    <%= link_to "Log in", new_session_path, style: "text-decoration: none;" unless authenticated? %>
-    <%= link_to "Log out", session_path, style: "text-decoration: none;", data: { turbo_method: :delete } if authenticated? %>
-  </div>
+  <%= link_to "Log in", new_session_path, style: "text-decoration: none;" unless authenticated? %>
+  <%= link_to "Settings", settings_root_path if authenticated? %>
+  <%= link_to "Sign Up", sign_up_path unless authenticated? %>
+  <%= link_to "Log out", session_path, style: "text-decoration: none;", data: { turbo_method: :delete } if authenticated? %>
 </div>
 
