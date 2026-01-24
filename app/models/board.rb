@@ -2,9 +2,9 @@ class Board < ApplicationRecord
   belongs_to :game
   has_many :squares, dependent: :destroy
   has_many :users, through: :squares
-  
+
   validates :name, presence: true
-  validates :square_price, presence: true, 
+  validates :square_price, presence: true,
             numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   after_create :create_squares
@@ -29,22 +29,24 @@ class Board < ApplicationRecord
   end
 
   def winning_square(home_digit, away_digit)
-    [home_team_numbers.index(home_digit.to_s), away_team_numbers.index(away_digit.to_s)]
+    [ home_team_numbers.index(home_digit.to_s), away_team_numbers.index(away_digit.to_s) ]
   end
 
-  def winner()
-
+def winner(home_digit, away_digit)
+    column_index = home_team_numbers.index(home_digit.to_s)
+    row_index = away_team_numbers.index(away_digit.to_s)
+    squares.find_by(row: row_index, column: column_index)&.user&.nickname
   end
 
   private
 
   def create_squares
     return if squares.exists?
-  
+
     square_data = (0..9).flat_map do |row|
       (0..9).map { |column| { row: row, column: column, board_id: id } }
     end
-  
+
     Square.insert_all(square_data)
   end
 end
