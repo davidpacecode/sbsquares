@@ -1,7 +1,4 @@
-<ul>
-  <li><%= link_to "Teams", teams_path, class: "wa-link-plain" %></li>
-  <li><%= link_to "Games", games_path, class: "wa-link-plain" %></li>
-  <li><%= link_to "Boards", boards_path, class: "wa-link-plain" %></li>
-  <li><%= link_to "About", about_path, class: "wa-link-plain" %></li>
-</ul>
-
+<%= link_to "Teams", teams_path, class: "wa-link-plain" if current_user_admin? %>
+<%= link_to "Games", games_path, class: "wa-link-plain" if current_user_admin?  %>
+<%= link_to "Boards", boards_path, class: "wa-link-plain" %>
+<%= link_to "About", about_path, class: "wa-link-plain" %>
