@@ -15,11 +15,11 @@
               <wa-card ><%= board.away_digit_for(row) %></wa-card>
             <% else %>
               <% square = board.squares.find_by(row: row, column: column-1) %>
-              <% if square.nickname.present? %>
+              <% if square&.nickname.present? %>
                 <wa-card ><%= "#{square.nickname}" %></wa-card>
               <% else %>
                 <wa-card >
-                  <%= check_box_tag "square_ids[]", square.id, false, id: "square_#{square.id}" %>
+                  <%= check_box_tag "square_ids[]", square&.id, false, id: "square_#{square&.id}" %>
                 </wa-card>
               <% end %>
             <% end %>

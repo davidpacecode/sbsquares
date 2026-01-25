@@ -2,9 +2,9 @@ class Game < ApplicationRecord
   belongs_to :home_team, class_name: 'Team'
   belongs_to :away_team, class_name: 'Team'
   has_many :boards, dependent: :destroy
-  
+
   validates :home_team, :away_team, :game_datetime, presence: true
-  
+
   validates :status, inclusion: { in: %w[scheduled in_progress completed],
                                   message: "%{value} is not a valid status" },
                      allow_nil: true
@@ -20,7 +20,7 @@ class Game < ApplicationRecord
   def sport
     home_team&.sport
   end
-  
+
   # Helper method to get score pairs
   def quarter_scores
     {
@@ -30,12 +30,12 @@ class Game < ApplicationRecord
       q4: { home: q4_home, away: q4_away }
     }
   end
-  
+
   # Get last digit for a specific quarter
   def home_digit_for_quarter(quarter)
     send("#{quarter}_home")&.to_s&.last&.to_i
   end
-  
+
   def away_digit_for_quarter(quarter)
     send("#{quarter}_away")&.to_s&.last&.to_i
   end
@@ -44,21 +44,17 @@ class Game < ApplicationRecord
   def winning_digit_for_quarter(quarter_num, home_or_away)
     sum = 0
     (1..quarter_num).each do |i|
-      sum += send("q#{i}_#{home_or_away}")&.to_i
+      sum += send("q#{i}_#{home_or_away}").to_i
     end
     sum.to_s.last.to_i
   end
-  
-  def away_digit_for_quarter(quarter)
-    send("#{quarter}_away")&.to_s&.last&.to_i
-  end
 
- def title
+  def title
     "#{game_datetime.strftime('%B %-d, %Y')} at #{home_team&.name} vs #{away_team&.name}"
   end
 
   private
-  
+
   def set_default_status
     self.status ||= 'scheduled'
   end
