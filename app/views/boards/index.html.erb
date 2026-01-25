@@ -5,12 +5,24 @@
 <h3>Boards</h3>
 
 <div id="boards">
-  <% @boards.each do |board| %>
-    <%= render board %>
-    <p>
-      <%= link_to "Show this board", board %>
-    </p>
-  <% end %>
+  <table>
+    <caption class="wa-heading-l">Available Boards</caption>
+    <thead style="font-weight: bold;">
+      <td>Name</td>
+      <td>Game</td>
+      <td>Square Price</td>
+    </thead>
+    <tbody>
+      <% @boards.each do |board| %>
+        <%# render board %>
+        <tr>
+          <td><%= link_to board.name, board %></td>
+          <td><%= board.game.title %></td>
+          <td><%= number_to_currency(board.square_price, precision: 0) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
 <%= link_to "New board", new_board_path %>
