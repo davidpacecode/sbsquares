@@ -16,6 +16,11 @@
   </div>
 
   <div>
+    <%= form.label :nickname %>
+    <%= form.text_field :nickname, required: false, autocomplete: "nickname" %>
+  </div>
+
+  <div>
     <%= form.submit "Update profile" %>
   </div>
 <% end %>

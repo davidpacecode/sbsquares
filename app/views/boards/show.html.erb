@@ -14,10 +14,10 @@
 <wa-button id="your-squares-button">Your Squares</wa-button>
 
 <div>
-  <%= link_to "Edit this board", edit_board_path(@board) %> |
+  <%= link_to "Edit this board", edit_board_path(@board) if current_user_admin? %>
   <%= link_to "Back to boards", boards_path %>
 
-  <%= button_to "Destroy this board", @board, method: :delete %>
+  <%= button_to "Destroy this board", @board, method: :delete if current_user_admin? %>
 </div>
 
 <script>
