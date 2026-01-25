@@ -7,19 +7,33 @@
 
       <div class="wa-grid wa-gap-xs" style="grid-template-columns: repeat(11, 5rem);">
         <% (0..10).each do |col| %>
-          <wa-card ><%= board.home_digit_for(col-1) unless col == 0 %></wa-card>
+          <wa-card>
+            <div class="wa-stack wa-align-items-center wa-gap-s">
+              <%= board.home_digit_for(col-1) unless col == 0 %>
+            </div>
+          </wa-card>
         <% end %>
         <% (0..9).each do |row| %>
           <% (0..10).each do |column| %>
             <% if column == 0 %>
-              <wa-card ><%= board.away_digit_for(row) %></wa-card>
+              <wa-card>
+                <div class="wa-stack wa-align-items-center wa-gap-s">
+                  <%= board.away_digit_for(row) %>
+                </div> 
+              </wa-card>
             <% else %>
               <% square = board.squares.find_by(row: row, column: column-1) %>
               <% if square&.nickname.present? %>
-                <wa-card ><%= "#{square.nickname}" %></wa-card>
+                <wa-card>
+                  <div class="wa-stack wa-align-items-center wa-gap-s">
+                    <%= "#{square.nickname}" %>
+                  </div>
+                </wa-card>
               <% else %>
-                <wa-card >
-                  <%= check_box_tag "square_ids[]", square&.id, false, id: "square_#{square&.id}" %>
+                <wa-card>
+                  <div class="wa-stack wa-align-items-center wa-gap-s">
+                    <%= check_box_tag "square_ids[]", square&.id, false, id: "square_#{square&.id}" %>
+                  </div>
                 </wa-card>
               <% end %>
             <% end %>
