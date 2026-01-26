@@ -1,17 +1,5 @@
 <div id="<%= dom_id board %>">
   <div>
-    <strong>Name:</strong>
-    <%= board.name %>
+    <h3><%= "#{board.name} - $#{board.square_price} per square!" %></h3>
   </div>
-
-  <div>
-    <strong>Square price:</strong>
-    <%= board.square_price %>
-  </div>
-
-  <div>
-    <strong>Game:</strong>
-    <%= board.game_id %>
-  </div>
-
 </div>

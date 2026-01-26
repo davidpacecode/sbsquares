@@ -1,23 +1,23 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @board %>
+<div class="wa-stack wa-align-items-center wa-gap-s">
+  <%= render @board %>
+  <%= render "games/scoreboard", game: @board.game %>
 
-<%= render "games/scoreboard", game: @board.game %>
+  <%= turbo_frame_tag "grid_#{@board.id}" do %>
+    <%= render "your_squares", board: @board %>
+    <%= render "grid", board: @board %>
+  <% end %>
 
-<%= render "winners", board: @board %>
 
-<%= turbo_frame_tag "grid_#{@board.id}" do %>
-  <%= render "your_squares", board: @board %>
-  <%= render "grid", board: @board %>
-<% end %>
+  <div>
+    <wa-button id="your-squares-button">Your Squares</wa-button>
+    <%= link_to "Edit this board", edit_board_path(@board) if current_user_admin? %>
+    <%= link_to "Back to boards", boards_path %>
 
-<wa-button id="your-squares-button">Your Squares</wa-button>
-
-<div>
-  <%= link_to "Edit this board", edit_board_path(@board) if current_user_admin? %>
-  <%= link_to "Back to boards", boards_path %>
-
-  <%= button_to "Destroy this board", @board, method: :delete if current_user_admin? %>
+    <%= button_to "Destroy this board", @board, method: :delete if current_user_admin? %>
+  </div>
+  <%= render "winners", board: @board %>
 </div>
 
 <script>
