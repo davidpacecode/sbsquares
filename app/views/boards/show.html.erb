@@ -9,14 +9,14 @@
     <%= render "grid", board: @board %>
   <% end %>
 
-
-  <div>
-    <wa-button id="your-squares-button">Your Squares</wa-button>
-    <%= link_to "Edit this board", edit_board_path(@board) if current_user_admin? %>
-    <%= link_to "Back to boards", boards_path %>
-
-    <%= button_to "Destroy this board", @board, method: :delete if current_user_admin? %>
+  <div class="wa-cluster wa-align-items-center wa-gap-s">
+    <wa-button id="your-squares-button" variant="brand">View Your Squares</wa-button>
+    <wa-button id="winners-button" variant="brand">View Winners</wa-button>
   </div>
+  <%= link_to "Edit this board", edit_board_path(@board) if current_user_admin? %>
+  <%= link_to "Back to boards", boards_path %>
+
+  <%= button_to "Destroy this board", @board, method: :delete if current_user_admin? %>
   <%= render "winners", board: @board %>
 </div>
 
@@ -26,3 +26,8 @@
   });
 </script>
 
+<script>
+  document.getElementById('winners-button').addEventListener('click', () => {
+    document.getElementById('winners-drawer').open = true;
+  });
+</script>

@@ -1,21 +1,24 @@
-<table style="max-width: 300px;">
-  <caption class="wa-heading-l">Winners!</caption>
-  <thead style="font-weight: bold;">
-    <td>Quarter</td>
-    <td>Home Digit</td>
-    <td>Away Digit</td>
-    <td>Winner</td>
-  </thead>
-  <tbody>
-    <% (1..4).each do |i| %>
-      <tr>
-        <td><%= i %></td>
-        <td><%= board.game.winning_digit_for_quarter(i,"home") %></td>
-        <td><%= board.game.winning_digit_for_quarter(i,"away") %></td>
-        <td><%= board.winner(board.game.winning_digit_for_quarter(i,"home"),board.game.winning_digit_for_quarter(i,"away")) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<wa-drawer label="Winners" id="winners-drawer">
 
-<%= board.game.quarter_scores %>
+  <table style="max-width: 300px;">
+    <caption class="wa-heading-l">Winners!</caption>
+    <thead style="font-weight: bold;">
+      <td>Quarter</td>
+      <td>Home Digit</td>
+      <td>Away Digit</td>
+      <td>Winner</td>
+    </thead>
+    <tbody>
+      <% (1..4).each do |i| %>
+        <tr>
+          <td><%= i %></td>
+          <td><%= board.game.winning_digit_for_quarter(i,"home") %></td>
+          <td><%= board.game.winning_digit_for_quarter(i,"away") %></td>
+          <td><%= board.winner(board.game.winning_digit_for_quarter(i,"home"),board.game.winning_digit_for_quarter(i,"away")) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <wa-button slot="footer" variant="brand" data-drawer="close">Close</wa-button>
+</wa-drawer>
