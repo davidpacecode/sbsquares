@@ -14,7 +14,7 @@
     <wa-button id="winners-button" variant="brand">View Winners</wa-button>
   </div>
   <%= link_to "Edit this board", edit_board_path(@board) if current_user_admin? %>
-  <%= link_to "Back to boards", boards_path %>
+  <%= link_to "Back to Boards...", boards_path %>
 
   <%= button_to "Destroy this board", @board, method: :delete if current_user_admin? %>
   <%= render "winners", board: @board %>
