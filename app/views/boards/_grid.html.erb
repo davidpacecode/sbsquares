@@ -3,7 +3,7 @@
   <div class="wa-stack" style="align-items: center;">
     <%= image_tag board.game.home_team.logo, size: "100x100" %>
     <div class="wa-flank">
-      <%= image_tag board.game.away_team.logo, size: "100x100"  %>
+      <%= image_tag board.game.away_team.logo, size: "100x100" %>
 
       <div class="wa-grid wa-gap-xs" style="grid-template-columns: repeat(11, 5rem);">
         <% (0..10).each do |col| %>
@@ -26,7 +26,8 @@
               <% if square&.nickname.present? %>
                 <wa-card>
                   <div class="wa-stack wa-align-items-center wa-gap-s">
-                    <%= "#{square.nickname}" %>
+                    <wa-tooltip for="<%= "square_#{row}_#{column-1}" %>"><%= "#{square.nickname}" %></wa-tooltip>
+                    <span id="<%= "square_#{row}_#{column-1}" %>"><%= "#{square.nickname[0,2]...}" %></span>
                   </div>
                 </wa-card>
               <% else %>
