@@ -5,7 +5,7 @@
     <div class="wa-flank">
       <%= image_tag board.game.away_team.logo, size: "100x100" %>
 
-      <div class="wa-grid wa-gap-xs" style="grid-template-columns: repeat(11, 5rem);">
+      <div class="wa-grid wa-gap-xs" style="grid-template-columns: repeat(11, 6rem);">
         <% (0..10).each do |col| %>
           <wa-card>
             <div class="wa-stack wa-align-items-center wa-gap-s">
@@ -27,7 +27,7 @@
                 <wa-card>
                   <div class="wa-stack wa-align-items-center wa-gap-s">
                     <wa-tooltip for="<%= "square_#{row}_#{column-1}" %>"><%= "#{square.nickname}" %></wa-tooltip>
-                    <span id="<%= "square_#{row}_#{column-1}" %>"><%= "#{square.nickname[0,2]...}" %></span>
+                    <span class="wa-body-xs" id="<%= "square_#{row}_#{column-1}" %>"><%= "#{square.nickname[0,9]...}" %></span>
                   </div>
                 </wa-card>
               <% else %>
