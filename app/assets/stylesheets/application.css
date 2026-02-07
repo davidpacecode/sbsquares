@@ -8,3 +8,23 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+.squares-grid {
+  display: grid;
+  grid-template-columns: repeat(11, 1fr); /* if you have 11 columns */
+  width: 100%;
+  max-width: 100%;
+  gap: 2px;
+}
+
+.square-cell {
+  aspect-ratio: 1; /* keeps squares square */
+  min-width: 0; /* allows cells to shrink below their content size */
+  font-size: clamp(0.5rem, 2vw, 1rem); /* scales text with viewport */
+}
+
+wa-card {
+  max-width: 100%;
+  overflow: hidden;
+}
+

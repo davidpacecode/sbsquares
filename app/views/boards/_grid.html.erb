@@ -5,9 +5,9 @@
     <div class="wa-flank">
       <%= image_tag board.game.away_team.logo, size: "100x100" %>
 
-      <div class="wa-grid wa-gap-xs" style="grid-template-columns: repeat(11, 6rem);">
+      <div class="squares-grid wa-grid wa-gap-xs" style="grid-template-columns: repeat(11, 6rem);">
         <% (0..10).each do |col| %>
-          <wa-card>
+          <wa-card class="square-cell">
             <div class="wa-stack wa-align-items-center wa-gap-s">
               <%= board.home_digit_for(col-1) unless col == 0 %>
             </div>
@@ -16,7 +16,7 @@
         <% (0..9).each do |row| %>
           <% (0..10).each do |column| %>
             <% if column == 0 %>
-              <wa-card>
+              <wa-card class="square-cell">
                 <div class="wa-stack wa-align-items-center wa-gap-s">
                   <%= board.away_digit_for(row) %>
                 </div> 
@@ -24,14 +24,14 @@
             <% else %>
               <% square = board.squares.find_by(row: row, column: column-1) %>
               <% if square&.nickname.present? %>
-                <wa-card>
+                <wa-card class="square-cell">
                   <div class="wa-stack wa-align-items-center wa-gap-s">
                     <wa-tooltip for="<%= "square_#{row}_#{column-1}" %>"><%= "#{square.nickname}" %></wa-tooltip>
                     <span class="wa-body-xs" id="<%= "square_#{row}_#{column-1}" %>"><%= "#{square.nickname[0,9]...}" %></span>
                   </div>
                 </wa-card>
               <% else %>
-                <wa-card>
+                <wa-card class="square-cell">
                   <div class="wa-stack wa-align-items-center wa-gap-s">
                     <%= check_box_tag "square_ids[]", square&.id, false, id: "square_#{square&.id}" %>
                   </div>
