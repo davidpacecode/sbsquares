@@ -5,7 +5,8 @@
     <div class="wa-flank">
       <%= image_tag board.game.away_team.logo, size: "100x100" %>
 
-      <div class="squares-grid wa-grid wa-gap-xs" style="grid-template-columns: repeat(11, 6rem);">
+      <div class="squares-grid-container">
+      <div class="squares-grid wa-grid wa-gap-xs">
         <% (0..10).each do |col| %>
           <wa-card class="square-cell">
             <div class="wa-stack wa-align-items-center wa-gap-s">
@@ -40,6 +41,7 @@
             <% end %>
           <% end %>
         <% end %>
+      </div>
       </div>
     </div>
     <div class="wa-flank">
