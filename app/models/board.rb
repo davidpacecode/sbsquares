@@ -38,6 +38,10 @@ class Board < ApplicationRecord
     squares.find_by(row: row_index, column: column_index)&.user&.nickname
   end
 
+  def cost_for_user(user)
+    squares.where(user: user)&.count * square_price
+  end
+
   private
 
   def create_squares

@@ -16,5 +16,6 @@
     </tbody>
   </table>
 
+  <span class="wa-heading-m"><%= "You owe $#{board.cost_for_user(Current.user.id)}" %></span>
   <wa-button slot="footer" variant="brand" data-drawer="close">Close</wa-button>
 </wa-drawer>
