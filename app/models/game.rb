@@ -49,6 +49,14 @@ class Game < ApplicationRecord
     sum.to_s.last.to_i
   end
 
+  def total_score_for(home_or_away)
+    if home_or_away == "home"
+      q1_home.to_i + q2_home.to_i + q3_home.to_i + q4_home.to_i
+    else
+      q1_away.to_i + q2_away.to_i + q3_away.to_i + q4_away.to_i
+    end
+  end
+
   def title
     "#{game_datetime.strftime('%B %-d, %Y')} at #{home_team&.name} vs #{away_team&.name}"
   end

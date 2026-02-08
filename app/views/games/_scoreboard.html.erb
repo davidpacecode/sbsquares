@@ -15,7 +15,7 @@
       <td><%= game.q2_home %></td>
       <td><%= game.q3_home %></td>
       <td><%= game.q4_home %></td>
-      <td><%= "0" %></td>
+      <td><%= game.total_score_for("home") %></td>
     </tr>
     <tr>
       <td><%= game.away_team.full_name %></td>
@@ -23,7 +23,7 @@
       <td><%= game.q2_away %></td>
       <td><%= game.q3_away %></td>
       <td><%= game.q4_away %></td>
-      <td><%= "0" %></td>
+      <td><%= game.total_score_for("away") %></td>
     </tr>
   </tbody>
 </table>
