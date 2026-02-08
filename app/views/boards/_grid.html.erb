@@ -27,8 +27,8 @@
               <% if square&.nickname.present? %>
                 <wa-card class="square-cell">
                   <div class="wa-stack wa-align-items-center wa-gap-s">
-                    <wa-tooltip for="<%= "square_#{row}_#{column-1}" %>"><%= "#{square.nickname}" %></wa-tooltip>
-                    <span class="wa-body-xs" id="<%= "square_#{row}_#{column-1}" %>"><%= "#{square.nickname[0,9]...}" %></span>
+                    <wa-tooltip for="<%= "square_#{row}_#{column-1}" %>"><%= "#{square.nickname} aka #{square.user.first_name}" %></wa-tooltip>
+                    <span class="wa-body-xs" id="<%= "square_#{row}_#{column-1}" %>"><%= "#{square.nickname[0,9]}" %><%= "..." if square.nickname.length >= 10 %></span>
                   </div>
                 </wa-card>
               <% else %>
