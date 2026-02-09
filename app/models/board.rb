@@ -35,7 +35,7 @@ class Board < ApplicationRecord
   def winner(home_digit, away_digit)
     column_index = home_team_numbers.index(home_digit.to_s)
     row_index = away_team_numbers.index(away_digit.to_s)
-    squares.find_by(row: row_index, column: column_index)&.user&.nickname
+    squares.find_by(row: row_index, column: column_index)&.nickname
   end
 
   def cost_for_user(user)
