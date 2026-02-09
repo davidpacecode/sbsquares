@@ -7,6 +7,7 @@
       <td>Home Digit</td>
       <td>Away Digit</td>
       <td>Winner</td>
+      <td>Prize</td>
     </thead>
     <tbody>
       <% (1..4).each do |i| %>
@@ -15,6 +16,7 @@
           <td><%= board.game.winning_digit_for_quarter(i,"home") %></td>
           <td><%= board.game.winning_digit_for_quarter(i,"away") %></td>
           <td><%= board.winner(board.game.winning_digit_for_quarter(i,"home"),board.game.winning_digit_for_quarter(i,"away")) %></td>
+          <td><%= "$#{(board.square_price * 100 * i * 0.1).to_i}" %></td>
         </tr>
       <% end %>
     </tbody>
