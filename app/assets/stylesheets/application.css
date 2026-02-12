@@ -27,7 +27,17 @@
   aspect-ratio: 1;
   min-width: 0;
   font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e0e0e0;
+  border-radius: var(--wa-border-radius-s);
+  background: var(--wa-color-neutral-0);
 }
+
+/* Default: show full name, hide initials */
+.square-cell .full-name { display: inline; }
+.square-cell .initials  { display: none; }
 
 @media (max-width: 768px) {
   .squares-grid {
@@ -36,6 +46,16 @@
 
   .square-cell {
     font-size: 0.6rem;
+  }
+
+  .square-cell .full-name { display: none; }
+  .square-cell .initials  { display: inline; }
+
+  .square-cell::part(base) {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
