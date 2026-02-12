@@ -1,15 +1,19 @@
 <%= form_with(url: claim_squares_board_path(board), method: :post) do |form| %>
 
   <div class="wa-stack" style="align-items: center;">
-    <%= image_tag board.game.home_team.logo, size: "100x100" %>
-    <div class="wa-flank">
-      <%= image_tag board.game.away_team.logo, size: "100x100" %>
+    <div class="home-logo-row">
+      <%= image_tag board.game.home_team.logo, class: "team-logo" %>
+    </div>
 
-      <div class="squares-grid-container">
+    <div class="squares-grid-container">
       <div class="squares-grid wa-grid wa-gap-xs">
         <% (0..10).each do |col| %>
           <div class="square-cell">
-            <%= board.home_digit_for(col-1) unless col == 0 %>
+            <% if col == 0 %>
+              <%= image_tag board.game.away_team.logo, class: "corner-logo" %>
+            <% else %>
+              <%= board.home_digit_for(col-1) %>
+            <% end %>
           </div>
         <% end %>
         <% (0..9).each do |row| %>
@@ -36,7 +40,6 @@
             <% end %>
           <% end %>
         <% end %>
-      </div>
       </div>
     </div>
     <div class="wa-flank">
